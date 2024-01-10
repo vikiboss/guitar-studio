@@ -8,17 +8,14 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    exact: true,
     children: [
       {
         path: '/',
         element: <Home />,
-        exact: true,
       },
       {
         path: '/about',
         element: <About />,
-        exact: true,
       },
     ],
   },
