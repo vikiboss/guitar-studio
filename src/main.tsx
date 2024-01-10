@@ -1,12 +1,13 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
+import { RouterProvider } from 'react-router-dom'
 
 import 'modern-normalize/modern-normalize.css'
 import 'virtual:uno.css'
 import './index.css'
 import './i18n.ts'
 
-import { App } from './app.tsx'
+import { router } from './router.tsx'
 
 const mainDiv = document.getElementById('main')
 
@@ -15,7 +16,7 @@ if (mainDiv) {
 
   root.render(
     <React.StrictMode>
-      <App />
+      <RouterProvider router={router} />
     </React.StrictMode>,
   )
 } else {
