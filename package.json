@@ -1,0 +1,23 @@
+{
+  "name": "react-ts-vite-unocss-template",
+  "private": true,
+  "type": "module",
+  "description": "react-ts-vite-unocss template",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "typescript": "^5.3.3",
+    "unocss": "^0.58.3",
+    "vite": "^5.0.11"
+  }
+}
