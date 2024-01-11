@@ -8,6 +8,7 @@ export const useRouterLink = () => {
   const { pathname } = useLocation()
 
   return {
+    isActive: (to: string) => pathToRegexp(to).test(pathname),
     Link: (props: LinkProps & { activeClsName?: string; inactiveClsName?: string }) => {
       const { to, activeClsName, inactiveClsName, className, ...rest } = props
       const target = (typeof to === 'object' ? to.pathname : to) || ''
