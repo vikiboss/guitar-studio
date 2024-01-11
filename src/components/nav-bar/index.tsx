@@ -26,10 +26,10 @@ export function NavBar() {
 
   return (
     <div className='w-full flex items-center justify-center relative'>
-      <div className='h-12 top-4 px-2 fixed flex items-center justify-between rounded-2 w-[calc(100vw-2rem)] mx-4 lg:w-[880px] bg-[#eeeeee]/60 dark:bg-dark'>
+      <div className='h-12 top-2 lg:top-4 px-2 fixed flex items-center justify-between rounded-2 w-[calc(100vw-2rem)] mx-4 lg:w-[880px] bg-[#eeeeee]/60 dark:bg-dark'>
         <div className='flex items-center gap-2'>
           <Tabs
-            className='max-w-[64vw]'
+            className='max-w-[60vw] lg:max-w-[880px]'
             hideDivider
             hideBorder
             initialValue={pathname}
