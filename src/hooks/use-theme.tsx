@@ -5,26 +5,33 @@ import { store } from '@/store'
 import type { Theme } from '@/store'
 
 export const useTheme = () => {
-  const { theme } = store.useState()
+  const { theme, isSystemDark } = store.useState()
 
   const isDark = theme === 'dark'
-  const isLight = theme === 'light'
   const isThemeSystem = theme === 'system'
 
-  const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  useEffect(() => {
+    const handleChange = (event: MediaQueryListEvent) => {
+      store.mutate.isSystemDark = event.matches
+    }
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
 
   useEffect(() => {
     const root = document.documentElement
     root.classList.toggle('dark', isThemeSystem ? isSystemDark : isDark)
-    localStorage.setItem('theme', isThemeSystem ? (isSystemDark ? 'dark' : 'light') : theme)
+    localStorage.setItem('theme', isThemeSystem ? 'system' : theme)
   }, [theme, isSystemDark])
 
   return {
+    /** options: `light`, `dark` or `system` */
     theme,
+    /** options: `light` or `dark` */
     geistTheme: isThemeSystem ? (isSystemDark ? 'dark' : 'light') : theme,
 
     isDark,
-    isLight,
     isSystem: isThemeSystem,
 
     setTheme: (t: Theme) => (store.mutate.theme = t),
