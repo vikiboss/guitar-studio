@@ -1,6 +1,6 @@
-# Guitar Studio
+# Guitar Studio [WIP]
 
-A web project template generate by [templates](https://github.com/vikiboss/templates).
+🎸 + 🌐 = your **all-in-one** guitar online toolkit, generate by [templates](https://github.com/vikiboss/templates).
 
 ## Tech Stack
 
