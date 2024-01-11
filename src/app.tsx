@@ -12,7 +12,7 @@ export function App() {
       <div className='h-screen w-screen'>
         <NavBar />
         <div className='mt-20 flex justify-center px-4'>
-          <div className='max-w-[1200px] w-full lg:w-[72vw]'>
+          <div className='max-w-[880px] w-full lg:w-[72vw]'>
             <Outlet />
           </div>
         </div>
