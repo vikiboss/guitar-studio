@@ -22,3 +22,11 @@ i18n
       escapeValue: false,
     },
   })
+
+declare module 'i18next' {
+  interface CustomTypeOptions {
+    resources: typeof en
+  }
+}
+
+export { i18n }

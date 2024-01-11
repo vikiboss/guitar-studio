@@ -1,16 +1,25 @@
 import { Button } from '@geist-ui/core'
-import { Sun, Monitor, Moon } from '@geist-ui/icons'
+import { Sun, Github, Monitor, Moon } from '@geist-ui/icons'
 
 import { useTheme } from '@/hooks/use-theme'
 import { useRouterLink } from '@/hooks/use-router-link'
 import { useTranslation } from 'react-i18next'
 
+const langMap: Record<string, string> = {
+  en: 'EN',
+  jp: 'JP',
+  'zh-CN': 'ZH',
+  'zh-TW': 'TW',
+}
+
 export function NavBar() {
-  const { t } = useTranslation('nav')
   const { Link } = useRouterLink()
+  const { i18n, t } = useTranslation('nav')
   const { isDark, isSystem, setTheme } = useTheme()
 
+  const langs = Object.keys(i18n.options.resources || {})
   const nextTheme = isSystem ? 'light' : isDark ? 'system' : 'dark'
+  const nextLang = langs[(langs.indexOf(i18n.language) + 1) % langs.length]
 
   return (
     <div className='w-full flex items-center justify-center relative'>
@@ -47,14 +56,35 @@ export function NavBar() {
             </Button>
           </Link>
         </div>
-        <Button
-          onClick={() => setTheme(nextTheme)}
-          iconRight={isSystem ? <Monitor /> : isDark ? <Moon /> : <Sun />}
-          scale={1 / 3}
-          auto
-          px={0.6}
-          placeholder='switch theme'
-        />
+        <div className='flex items-center gap-2'>
+          <Button
+            onClick={() => window.open('https://github.com/vikiboss/guitar-studio', '_blank')}
+            iconRight={<Github />}
+            scale={1 / 3}
+            auto
+            px={0.6}
+            placeholder='switch theme'
+          />
+
+          <Button
+            onClick={() => setTheme(nextTheme)}
+            iconRight={isSystem ? <Monitor /> : isDark ? <Moon /> : <Sun />}
+            scale={1 / 3}
+            auto
+            px={0.6}
+            placeholder='switch theme'
+          />
+          <Button
+            onClick={() => i18n.changeLanguage(nextLang)}
+            scale={1 / 3}
+            auto
+            px={0.6}
+            className='font-mono tracking-widest'
+            placeholder='switch theme'
+          >
+            {langMap[i18n.language]}
+          </Button>
+        </div>
       </div>
     </div>
   )
