@@ -1,6 +1,10 @@
 {
-  "common": {
-    "i18n-test": "i18n test"
-  },
-  "home": {}
+  "nav": {
+    "home": "Home",
+    "tuner": "Tuner",
+    "metronome": "Metronome",
+    "chords": "Chords",
+    "pitch-training": "Pitch Training",
+    "tablature": "Tablature"
+  }
 }

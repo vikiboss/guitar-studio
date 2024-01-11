@@ -3,8 +3,10 @@ import { Sun, Monitor, Moon } from '@geist-ui/icons'
 
 import { useTheme } from '@/hooks/use-theme'
 import { useRouterLink } from '@/hooks/use-router-link'
+import { useTranslation } from 'react-i18next'
 
 export function NavBar() {
+  const { t } = useTranslation('nav')
   const { Link } = useRouterLink()
   const { isDark, isSystem, setTheme } = useTheme()
 
@@ -16,20 +18,39 @@ export function NavBar() {
         <div className='flex items-center gap-2'>
           <Link className='flex items-center' to='/'>
             <Button scale={4 / 9} auto placeholder='navigate to home'>
-              Home
+              {t('home')}
             </Button>
           </Link>
-          <Link className='flex items-center' to='/about'>
-            <Button scale={4 / 9} auto placeholder='navigate to about'>
-              About
+          <Link className='flex items-center' to='/tuner'>
+            <Button scale={4 / 9} auto placeholder='navigate to tuner'>
+              {t('tuner')}
+            </Button>
+          </Link>
+          <Link className='flex items-center' to='/metronome'>
+            <Button scale={4 / 9} auto placeholder='navigate to metronome'>
+              {t('metronome')}
+            </Button>
+          </Link>
+          <Link className='flex items-center' to='/tablature'>
+            <Button scale={4 / 9} auto placeholder='navigate to tablature'>
+              {t('tablature')}
+            </Button>
+          </Link>
+          <Link className='flex items-center' to='/chords'>
+            <Button scale={4 / 9} auto placeholder='navigate to chords'>
+              {t('chords')}
+            </Button>
+          </Link>
+          <Link className='flex items-center' to='/pitch-training'>
+            <Button scale={4 / 9} auto placeholder='navigate to pitch training'>
+              {t('pitch-training')}
             </Button>
           </Link>
         </div>
-
         <Button
           onClick={() => setTheme(nextTheme)}
           iconRight={isSystem ? <Monitor /> : isDark ? <Moon /> : <Sun />}
-          scale={2 / 3}
+          scale={1 / 3}
           auto
           px={0.6}
           placeholder='switch theme'

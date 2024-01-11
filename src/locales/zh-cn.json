@@ -1,6 +1,10 @@
 {
-  "common": {
-    "i18n-test": "测试 i18n"
-  },
-  "home": {}
+  "nav": {
+    "home": "首页",
+    "tuner": "调音器",
+    "metronome": "节拍器",
+    "chords": "和弦",
+    "pitch-training": "音高训练",
+    "tablature": "指弹谱"
+  }
 }

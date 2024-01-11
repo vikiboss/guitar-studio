@@ -1,3 +1,10 @@
-
-
-{}
+{
+  "nav": {
+    "home": "ホーム",
+    "tuner": "チューナー",
+    "metronome": "メトロノーム",
+    "chords": "コード",
+    "pitch-training": "ピッチトレーニング",
+    "tablature": "タブ譜"
+  }
+}
