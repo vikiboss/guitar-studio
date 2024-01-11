@@ -13,9 +13,9 @@ i18n
   .init({
     resources: {
       en,
-      jp,
       'zh-CN': zhCN,
       'zh-TW': zhTW,
+      jp,
     },
     fallbackLng: 'en',
     interpolation: {

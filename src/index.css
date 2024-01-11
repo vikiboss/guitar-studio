@@ -32,4 +32,5 @@ span {
 
 .scroll-container {
   padding-left: 0 !important;
+  border-bottom: none !important;
 }
