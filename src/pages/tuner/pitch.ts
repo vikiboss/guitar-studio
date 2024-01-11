@@ -129,7 +129,7 @@ export function findClosestPitch(hz: number) {
   const minDelta = Math.abs(closestPitch.frequency - hz)
 
   // 调音器提示
-  const advice = minDelta <= 1 ? 'nice' : hz < closestPitch.frequency ? 'Tune Up' : 'Tune Down'
+  const advice = minDelta <= 1 ? 'Nice' : hz < closestPitch.frequency ? 'Tune Up' : 'Tune Down'
 
   return { note: closestPitch.note, hz: +closestPitch.frequency.toFixed(1), advice }
 }

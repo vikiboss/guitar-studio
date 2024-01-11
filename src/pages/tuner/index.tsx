@@ -10,7 +10,7 @@ import { findClosestPitch } from './pitch'
 export function Tuner() {
   const { t } = useTranslation(['nav'])
   const state = store.useState()
-  const [timer, setTimer] = useState<number>(0)
+  const [timer, setTimer] = useState<number>()
   const [stream, setStream] = useState<MediaStream | null>(null)
 
   async function starTuning() {
@@ -49,11 +49,32 @@ export function Tuner() {
       <h2>{t('tuner')}</h2>
 
       <div className='flex flex-col items-center gap-2'>
+        {timer ? (
+          <>
+            <span className='text-[168px]'>{timer ? note : '-'}</span>
+            <span className='text-[36px]'>
+              {state.pitch.toFixed(1)} Hz
+              <span className='text-[24px] text-slate dark:text-gray'> / {hz} Hz</span>
+            </span>
+            <span
+              className={cn(
+                'text-[68px]',
+                advice === 'Tune Up' ? 'text-amber' : advice === 'Nice' ? 'text-lime' : 'text-red',
+              )}
+            >
+              {advice}
+            </span>
+          </>
+        ) : (
+          <span className='text-[36px] my-20vh'>Press start to start tuning!</span>
+        )}
+
         <Button
           auto
           onClick={() => {
             if (timer) {
               clearInterval(timer)
+              setTimer(undefined)
               stream?.getTracks().forEach(track => track.stop())
             } else {
               starTuning()
@@ -63,17 +84,6 @@ export function Tuner() {
         >
           {timer ? 'stop' : 'start'}
         </Button>
-
-        <span className='text-[168px]'>{note}</span>
-        <span className='text-[36px]'>{state.pitch.toFixed(1)} Hz / {hz} Hz</span>
-        <span
-          className={cn(
-            'text-[68px]',
-            advice === 'Tune Up' ? 'text-amber' : advice === 'nice' ? 'text-lime' : 'text-red',
-          )}
-        >
-          {advice}
-        </span>
       </div>
     </div>
   )
