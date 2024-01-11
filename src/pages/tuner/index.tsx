@@ -7,6 +7,8 @@ import { useTranslation } from 'react-i18next'
 import { store } from './store'
 import { findClosestPitch } from './pitch'
 
+const STANDARD_TUNING = ['E2', 'A2', 'D3', 'G3', 'B3', 'E4']
+
 export function Tuner() {
   const { t } = useTranslation(['nav'])
   const state = store.useState()
@@ -44,6 +46,8 @@ export function Tuner() {
 
   const { hz, note, advice } = findClosestPitch(state.pitch)
 
+  const adviceColor = advice === 'Tune Up' ? 'text-amber' : advice === 'Nice' ? 'text-lime' : 'text-red'
+
   return (
     <div>
       <h2>{t('tuner')}</h2>
@@ -59,11 +63,23 @@ export function Tuner() {
             <span
               className={cn(
                 'text-[68px]',
-                advice === 'Tune Up' ? 'text-amber' : advice === 'Nice' ? 'text-lime' : 'text-red',
+                adviceColor,
               )}
             >
               {advice}
             </span>
+            <div className='text-center mb-8'>
+              <span className={cn('text-4, opacity-50')}>{t('standard-tuning')}</span>
+              <div className='flex items-center gap-4 relative'>
+                {STANDARD_TUNING.map((preset) => (
+                  <div key={preset} className={cn('text-8 mx-2 transition-all font-medium',
+                    preset === note ? `opacity-100 ${adviceColor}` : 'opacity-50',
+                  )}>
+                    {preset}
+                  </div>
+                ))}
+              </div>
+            </div>
           </>
         ) : (
           <span className='text-[36px] my-20vh'>Press start to start tuning!</span>
