@@ -1,7 +1,8 @@
-import { Button } from '@geist-ui/core'
+import { Tabs, Button } from '@geist-ui/core'
 import { Sun, Github, Monitor, Moon } from '@geist-ui/icons'
 
 import { useTheme } from '@/hooks/use-theme'
+import { useNavigate } from 'react-router-dom'
 import { useRouterLink } from '@/hooks/use-router-link'
 import { useTranslation } from 'react-i18next'
 
@@ -13,48 +14,31 @@ const langMap: Record<string, string> = {
 }
 
 export function NavBar() {
-  const { Link } = useRouterLink()
+  const navigate = useNavigate()
+  const { pathname } = useRouterLink()
   const { i18n, t } = useTranslation('nav')
   const { isDark, isSystem, setTheme } = useTheme()
 
+  const navList = Object.keys(i18n.options.resources?.en?.nav ?? {}) as never[]
   const langs = Object.keys(i18n.options.resources || {})
   const nextTheme = isSystem ? 'light' : isDark ? 'system' : 'dark'
   const nextLang = langs[(langs.indexOf(i18n.language) + 1) % langs.length]
 
   return (
     <div className='w-full flex items-center justify-center relative'>
-      <div className='h-11 top-4 px-2 fixed flex items-center justify-between rounded-2 w-[calc(100vw-2rem)] mx-4 lg:w-[800px] bg-white dark:bg-dark shadow-md'>
+      <div className='h-12 top-4 px-2 fixed flex items-center justify-between rounded-2 w-[calc(100vw-2rem)] mx-4 lg:w-[880px] bg-[#eeeeee]/60 dark:bg-dark'>
         <div className='flex items-center gap-2'>
-          <Link className='flex items-center' to='/'>
-            <Button scale={4 / 9} auto placeholder='navigate to home'>
-              {t('home')}
-            </Button>
-          </Link>
-          <Link className='flex items-center' to='/tuner'>
-            <Button scale={4 / 9} auto placeholder='navigate to tuner'>
-              {t('tuner')}
-            </Button>
-          </Link>
-          <Link className='flex items-center' to='/metronome'>
-            <Button scale={4 / 9} auto placeholder='navigate to metronome'>
-              {t('metronome')}
-            </Button>
-          </Link>
-          <Link className='flex items-center' to='/tablature'>
-            <Button scale={4 / 9} auto placeholder='navigate to tablature'>
-              {t('tablature')}
-            </Button>
-          </Link>
-          <Link className='flex items-center' to='/chords'>
-            <Button scale={4 / 9} auto placeholder='navigate to chords'>
-              {t('chords')}
-            </Button>
-          </Link>
-          <Link className='flex items-center' to='/pitch-training'>
-            <Button scale={4 / 9} auto placeholder='navigate to pitch training'>
-              {t('pitch-training')}
-            </Button>
-          </Link>
+          <Tabs
+            className='max-w-[64vw]'
+            hideDivider
+            hideBorder
+            initialValue={pathname}
+            onChange={path => navigate(path)}
+          >
+            {navList.map(nav => (
+              <Tabs.Item key={nav} label={t(nav)} value={`/${nav === 'home' ? '' : nav}`} />
+            ))}
+          </Tabs>
         </div>
         <div className='flex items-center gap-2'>
           <Button

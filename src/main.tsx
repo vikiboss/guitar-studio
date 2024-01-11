@@ -7,7 +7,7 @@ import 'virtual:uno.css'
 import './index.css'
 import './i18n.ts'
 
-import { router } from './router.tsx'
+import { router } from './router'
 
 const mainDiv = document.getElementById('main')
 

@@ -21,3 +21,15 @@ span {
   padding: 0;
   box-sizing: border-box;
 }
+
+.tabs .content {
+  display: none;
+}
+
+.tab {
+  font-weight: 500 !important;
+}
+
+.scroll-container {
+  padding-left: 0 !important;
+}
