@@ -14,7 +14,7 @@
 Thanks to the following projects:
 
 - [pitchy](https://github.com/ianprime0509/pitchy)
-- [tuner](https://github.com/qiuxiang/tuner)
+- [chords-db](https://github.com/tombatossals/chords-db) ([guitar.json](https://github.com/tombatossals/chords-db/blob/master/lib/guitar.json))
 - [vexchords](https://github.com/0xfe/vexchords)
 
 ## License
