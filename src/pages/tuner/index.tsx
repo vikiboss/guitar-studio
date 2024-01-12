@@ -80,11 +80,11 @@ export function Tuner() {
             </span>
             <span className={cn('text-[48px]', adviceColor)}>{t(`tuner:${advice}`)}</span>
             <div className='text-center mb-8'>
-              <span className={cn('text-4, opacity-50')}>{t('tuner:standard-tuning')}</span>
+              <span className={cn('opacity-50')}>{t('tuner:standard-tuning')}</span>
               <div className='flex items-center gap-4 relative'>
                 {STANDARD_TUNING.map(tuning => {
                   const color = tuning === note ? `opacity-100 ${adviceColor}` : 'opacity-50'
-                  const clsName = cn('text-8 mx-2 transition-all font-medium', color)
+                  const clsName = cn('text-4 lg:text-8 mx-2 transition-all font-medium', color)
 
                   return (
                     <div key={tuning} className={clsName}>
