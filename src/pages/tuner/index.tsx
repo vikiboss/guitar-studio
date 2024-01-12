@@ -4,16 +4,16 @@ import { PitchDetector } from 'pitchy'
 import { useTranslation } from 'react-i18next'
 
 import { store } from './store'
+import { useRender } from '@/hooks/use-render'
 import { useUnmount } from '@/hooks/use-unmount'
 import { findClosestPitch } from './pitch'
 import { useViewTransition } from '@/hooks/use-view-transition'
-import { useRender } from '@/hooks/use-render'
+import { tunings } from '@/utils/chords'
 
 // global timer to fix the bug of setInterval when switching pages
 let timer: number = 0
 
 const ns = ['common', 'nav', 'tuner'] as const
-const STANDARD_TUNING = ['E2', 'A2', 'D3', 'G3', 'B3', 'E4'] as const
 
 export function Tuner() {
   const state = store.useState()
@@ -76,7 +76,7 @@ export function Tuner() {
             <div className='text-center mb-8'>
               <span className={cn('opacity-50')}>{t('tuner:standard-tuning')}</span>
               <div className='flex items-center gap-4 relative'>
-                {STANDARD_TUNING.map(tuning => {
+                {tunings.standard.map(tuning => {
                   const color =
                     tuning === closest.note ? `opacity-100 ${adviceColor}` : 'opacity-50'
                   const clsName = cn('text-4 lg:text-8 mx-2 transition-all font-medium', color)
