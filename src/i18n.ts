@@ -3,7 +3,7 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
 
 import en from './locales/en.json'
-import jp from './locales/jp.json'
+import ja from './locales/ja.json'
 import zhCN from './locales/zh-cn.json'
 import zhTW from './locales/zh-tw.json'
 
@@ -15,7 +15,7 @@ i18n
       en,
       'zh-CN': zhCN,
       'zh-TW': zhTW,
-      jp,
+      ja,
     },
     fallbackLng: 'en',
     interpolation: {

@@ -1,11 +1,18 @@
 {
+  "common": {
+    "start": "開始",
+    "stop": "停止"
+  },
   "nav": {
-    "home": "首頁",
+    "home": "主頁",
     "tuner": "調音器",
     "metronome": "節拍器",
     "chords": "和弦",
     "pitch-training": "音高訓練",
-    "tablature": "指彈譜",
-    "standard-tuning": "標準調弦"
+    "tablature": "指彈譜"
+  },
+  "tuner": {
+    "start-tip": "點擊下方的`開始`按鈕進行調音！",
+    "standard-tuning": "標準調音"
   }
 }

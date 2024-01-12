@@ -17,7 +17,7 @@ let timer: number = 0
 export function Tuner() {
   const state = store.useState()
 
-  const { t } = useTranslation(['nav'])
+  const { t } = useTranslation(['common', 'nav', 'tuner'])
   const { render } = useRender()
   const { withTrans } = useViewTransition()
 
@@ -69,7 +69,7 @@ export function Tuner() {
 
   return (
     <div>
-      <h2>{t('tuner')}</h2>
+      <h2>{t('nav:tuner')}</h2>
       <div className='flex flex-col items-center gap-2'>
         {timer ? (
           <>
@@ -80,7 +80,7 @@ export function Tuner() {
             </span>
             <span className={cn('text-[48px]', adviceColor)}>{advice}</span>
             <div className='text-center mb-8'>
-              <span className={cn('text-4, opacity-50')}>{t('standard-tuning')}</span>
+              <span className={cn('text-4, opacity-50')}>{t('tuner:standard-tuning')}</span>
               <div className='flex items-center gap-4 relative'>
                 {STANDARD_TUNING.map(tuning => {
                   const color = tuning === note ? adviceColor : 'text-white'
@@ -96,17 +96,15 @@ export function Tuner() {
             </div>
           </>
         ) : (
-          <span className='text-[36px] my-20vh'>
-            Press <code>start</code> button below to tuning!
-          </span>
+          <span className='text-[24px] my-20vh'>{t('tuner:start-tip')}</span>
         )}
 
         <Button
           auto
           onClick={withTrans(() => (timer ? stopTuning(state.stream) : starTuning()))}
-          placeholder={timer ? 'stop' : 'start'}
+          placeholder={timer ? t('common:stop') : t('common:start')}
         >
-          {timer ? 'stop' : 'start'}
+          {timer ? t('common:stop') : t('common:start')}
         </Button>
       </div>
     </div>

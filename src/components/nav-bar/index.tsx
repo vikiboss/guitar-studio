@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 
 const langMap: Record<string, string> = {
   en: 'EN',
-  jp: 'JP',
+  ja: 'JA',
   'zh-CN': 'ZH',
   'zh-TW': 'TW',
 }

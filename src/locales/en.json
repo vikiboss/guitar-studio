@@ -1,11 +1,18 @@
 {
+  "common": {
+    "start": "Start",
+    "stop": "Stop"
+  },
   "nav": {
     "home": "Home",
     "tuner": "Tuner",
     "metronome": "Metronome",
     "chords": "Chords",
     "pitch-training": "Pitch Training",
-    "tablature": "Tablature",
+    "tablature": "Tablature"
+  },
+  "tuner": {
+    "start-tip": "Press `start` button below to start tuning!",
     "standard-tuning": "Standard Tuning"
   }
 }

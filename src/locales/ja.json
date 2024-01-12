@@ -1,0 +1,18 @@
+{
+  "common": {
+    "start": "開始",
+    "stop": "停止"
+  },
+  "nav": {
+    "home": "ホーム",
+    "tuner": "チューナー",
+    "metronome": "メトロノーム",
+    "chords": "コード",
+    "pitch-training": "ピッチトレーニング",
+    "tablature": "タブ譜"
+  },
+  "tuner": {
+    "start-tip": "下の`開始`ボタンを押してチューニングを始めてください！",
+    "standard-tuning": "スタンダードチューニング"
+  }
+}
