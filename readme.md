@@ -11,11 +11,13 @@
 
 ## Credits
 
-Thanks to the following projects:
+Thanks to the following awesome projects / npm packages:
 
 - [pitchy](https://github.com/ianprime0509/pitchy)
-- [chords-db](https://github.com/tombatossals/chords-db) ([guitar.json](https://github.com/tombatossals/chords-db/blob/master/lib/guitar.json))
+- [chords-db](https://github.com/tombatossals/chords-db) ([lib/guitar.json](https://github.com/tombatossals/chords-db/blob/master/lib/guitar.json))
 - [vexchords](https://github.com/0xfe/vexchords)
+- [tone](https://github.com/Tonejs/Tone.js)
+- [teoria](https://github.com/saebekassebil/teoria)
 
 ## License
 

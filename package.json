@@ -21,6 +21,8 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^14.0.0",
     "react-router-dom": "^6.21.1",
+    "teoria": "^2.5.0",
+    "tone": "^14.7.77",
     "valtio": "^1.13.0",
     "vexchords": "^1.2.0"
   },
