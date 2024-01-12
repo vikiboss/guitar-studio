@@ -7,6 +7,7 @@ import { useMediaQuery, Select } from '@geist-ui/core'
 import { store } from './store'
 import { Note, chords } from '@/utils/chords'
 import { useTheme } from '@/hooks/use-theme'
+import { ALink } from '@/components/a-link'
 
 export function Chords() {
   const { t } = useTranslation(['nav'])
@@ -62,7 +63,6 @@ export function Chords() {
 
   return (
     <>
-      <h2>{t('nav:chords')}</h2>
       <div className={cn('flex gap-4 mt-4', isLg ? '' : 'justify-center')}>
         <Select
           className='text-#000000/80 dark:text-white/80 min-w-[36vw]! lg:min-w-[160px]!'
@@ -102,9 +102,7 @@ export function Chords() {
 
       <div className='flex gap-1 text-slate justify-center mt-8'>
         <span>Chord data is from</span>
-        <a rel='noreferrer' href='https://github.com/tombatossals/chords-db' target='_blank'>
-          chords-db
-        </a>
+        <ALink href='https://github.com/tombatossals/chords-db'>chords-db</ALink>
         <span>.</span>
       </div>
     </>

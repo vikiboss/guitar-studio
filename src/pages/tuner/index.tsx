@@ -63,7 +63,6 @@ export function Tuner() {
 
   return (
     <div>
-      <h2>{t('nav:tuner')}</h2>
       <div className='flex flex-col items-center gap-2'>
         {timer ? (
           <>

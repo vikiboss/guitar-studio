@@ -6,8 +6,8 @@
   "nav": {
     "home": "Home",
     "tuner": "Tuner",
-    "metronome": "Metronome",
     "chords": "Chords",
+    "metronome": "Metronome",
     "pitch-training": "Pitch Training",
     "tablature": "Tablature"
   },
