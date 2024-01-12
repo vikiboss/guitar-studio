@@ -8,6 +8,7 @@ import { store } from './store'
 import { useRender } from '@/hooks/use-render'
 import { useUnmount } from '@/hooks/use-unmount'
 import { findClosestPitch } from './pitch'
+import { useViewTransition } from '@/hooks/use-view-transition'
 
 const STANDARD_TUNING = ['E2', 'A2', 'D3', 'G3', 'B3', 'E4']
 
@@ -18,6 +19,7 @@ export function Tuner() {
   const { t } = useTranslation(['nav'])
   const state = store.useState()
   const render = useRender()
+  const { withTransition } = useViewTransition()
   const [stream, setStream] = useState<MediaStream>()
 
   const stopTuning = (stream?: MediaStream) => {
@@ -102,7 +104,7 @@ export function Tuner() {
 
         <Button
           auto
-          onClick={() => (timer ? stopTuning(stream) : starTuning())}
+          onClick={withTransition(() => (timer ? stopTuning(stream) : starTuning()))}
           placeholder={timer ? 'stop' : 'start'}
         >
           {timer ? 'stop' : 'start'}
