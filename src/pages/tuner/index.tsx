@@ -25,8 +25,9 @@ export function Tuner() {
       clearInterval(timer)
       timer = 0
       render()
-      stream?.getTracks().forEach(track => track.stop())
     }
+
+    stream?.getTracks().forEach(track => track.stop())
   }
 
   useUnmount(stopTuning)
@@ -57,13 +58,13 @@ export function Tuner() {
     }
   }
 
-  const { hz, note, advice } = findClosestPitch(state.pitch)
+  const { hz, note, status, advice } = findClosestPitch(state.pitch)
 
   const adviceColor = {
-    'Tune Up': 'text-amber',
-    Nice: 'text-lime',
-    'Tune Down': 'text-red',
-  }[advice]
+    ok: 'text-lime',
+    low: 'text-amber',
+    high: 'text-red',
+  }[status]
 
   return (
     <div>

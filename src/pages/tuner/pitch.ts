@@ -1,3 +1,5 @@
+import { store } from './store'
+
 class Pitch {
   note: string
   frequency: number
@@ -119,6 +121,13 @@ const Pitches: Pitch[] = [
   new Pitch('B8', 7902.13),
 ]
 
+// TODO: add i18n
+const AdviceMap = {
+  ok: 'Nice',
+  high: 'Tune Down',
+  low: 'Turn Up',
+}
+
 export function findClosestPitch(hz: number) {
   const closestPitch = Pitches.reduce((closest, pitch) => {
     const closestDelta = Math.abs(closest.frequency - hz)
@@ -126,10 +135,14 @@ export function findClosestPitch(hz: number) {
     return newDelta < closestDelta ? pitch : closest
   }, Pitches[0])
 
-  const minDelta = Math.abs(closestPitch.frequency - hz)
+  const delta = Math.abs(closestPitch.frequency - hz)
+  const minDeltaPreset = store.mutate.minDelta
+  const status = delta <= minDeltaPreset ? 'ok' : hz < closestPitch.frequency ? 'low' : 'high'
 
-  // 调音器提示
-  const advice = minDelta <= 1 ? 'Nice' : hz < closestPitch.frequency ? 'Tune Up' : 'Tune Down'
-
-  return { note: closestPitch.note, hz: +closestPitch.frequency.toFixed(1), advice }
+  return {
+    status,
+    hz: +closestPitch.frequency.toFixed(1),
+    note: closestPitch.note,
+    advice: AdviceMap[status],
+  }
 }
