@@ -140,8 +140,10 @@ export function findClosestPitch(hz: number) {
 
   return {
     status,
-    hz: +closestPitch.frequency.toFixed(1),
-    note: closestPitch.note,
+    closest: {
+      note: closestPitch.note,
+      frequency: +closestPitch.frequency.toFixed(1),
+    },
     advice: AdviceMap[status],
   }
 }

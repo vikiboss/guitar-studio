@@ -1,4 +1,6 @@
-import { proxy, useSnapshot } from 'valtio'
+import { proxy, ref, useSnapshot } from 'valtio'
+
+export { ref }
 
 export const create = <T extends object>(initialState: T) => {
   const state = proxy(initialState)

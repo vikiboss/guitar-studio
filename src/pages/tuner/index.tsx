@@ -4,31 +4,29 @@ import { PitchDetector } from 'pitchy'
 import { useTranslation } from 'react-i18next'
 
 import { store } from './store'
-import { useRender } from '@/hooks/use-render'
 import { useUnmount } from '@/hooks/use-unmount'
 import { findClosestPitch } from './pitch'
 import { useViewTransition } from '@/hooks/use-view-transition'
+import { useRender } from '@/hooks/use-render'
 
-const STANDARD_TUNING = ['E2', 'A2', 'D3', 'G3', 'B3', 'E4']
-
-// global timer, fix the bug of not clearing `setInterval` when change route
+// global timer to fix the bug of setInterval when switching pages
 let timer: number = 0
+
+const ns = ['common', 'nav', 'tuner'] as const
+const STANDARD_TUNING = ['E2', 'A2', 'D3', 'G3', 'B3', 'E4'] as const
 
 export function Tuner() {
   const state = store.useState()
 
-  const { t } = useTranslation(['common', 'nav', 'tuner'])
+  const { t } = useTranslation(ns)
   const { render } = useRender()
   const { withTrans } = useViewTransition()
 
-  const stopTuning = (stream?: MediaStream) => {
-    if (timer) {
-      clearInterval(timer)
-      timer = 0
-      render()
-    }
+  const setTimer = (t: number) => ((timer = t), render())
 
-    stream?.getTracks().forEach(track => track.stop())
+  const stopTuning = () => {
+    timer && (clearInterval(timer), setTimer(0))
+    store.mutate.stream.value?.getTracks().forEach(track => track.stop())
   }
 
   useUnmount(stopTuning)
@@ -38,34 +36,30 @@ export function Tuner() {
     const audioContext = new AudioContext()
     const analyserNode = audioContext.createAnalyser()
 
-    store.mutate.stream = stream
-
     audioContext.createMediaStreamSource(stream).connect(analyserNode)
     const detector = PitchDetector.forFloat32Array(analyserNode.fftSize)
     detector.minVolumeDecibels = state.minVolumeDecibels
     const input = new Float32Array(detector.inputLength)
 
-    timer = setInterval(updatePitch, state.interval)
+    store.mutate.stream.value = stream
 
     function updatePitch() {
       console.log('updatePitch...')
       analyserNode.getFloatTimeDomainData(input)
 
       const [pitch, clarity] = detector.findPitch(input, audioContext.sampleRate)
-      if (!pitch || clarity <= state.minClarity) return
 
-      store.mutate.clarity = clarity
-      store.mutate.pitch = pitch
+      if (pitch && clarity >= state.minClarity) {
+        store.mutate.clarity = clarity
+        store.mutate.pitch = pitch
+      }
     }
+
+    setTimer(setInterval(updatePitch, state.interval))
   }
 
-  const { hz, note, status, advice } = findClosestPitch(state.pitch)
-
-  const adviceColor = {
-    ok: 'text-lime',
-    low: 'text-amber',
-    high: 'text-red',
-  }[status]
+  const { closest, status, advice } = findClosestPitch(state.pitch)
+  const adviceColor = { ok: 'text-lime', low: 'text-amber', high: 'text-red' }[status]
 
   return (
     <div>
@@ -73,19 +67,19 @@ export function Tuner() {
       <div className='flex flex-col items-center gap-2'>
         {timer ? (
           <>
-            <span className='text-[128px]'>{timer ? note : '-'}</span>
-            <span className='text-[36px]'>
+            <span className='text-24 lg:text-28'>{timer ? closest.note : '-'}</span>
+            <span className='text-4 lg:text-6'>
               {state.pitch.toFixed(1)} Hz
-              <span className='opacity-50'> / {hz} Hz</span>
+              <span className='opacity-50'> / {closest.frequency} Hz</span>
             </span>
-            <span className={cn('text-[48px]', adviceColor)}>{t(`tuner:${advice}`)}</span>
+            <span className={cn('text-10 lg:text-12', adviceColor)}>{t(`tuner:${advice}`)}</span>
             <div className='text-center mb-8'>
               <span className={cn('opacity-50')}>{t('tuner:standard-tuning')}</span>
               <div className='flex items-center gap-4 relative'>
                 {STANDARD_TUNING.map(tuning => {
-                  const color = tuning === note ? `opacity-100 ${adviceColor}` : 'opacity-50'
+                  const color =
+                    tuning === closest.note ? `opacity-100 ${adviceColor}` : 'opacity-50'
                   const clsName = cn('text-4 lg:text-8 mx-2 transition-all font-medium', color)
-
                   return (
                     <div key={tuning} className={clsName}>
                       {tuning}
@@ -96,12 +90,12 @@ export function Tuner() {
             </div>
           </>
         ) : (
-          <span className='text-[24px] my-20vh'>{t('tuner:start-tip')}</span>
+          <span className='text-3 lg:text-6 my-20vh'>{t('tuner:start-tip')}</span>
         )}
 
         <Button
           auto
-          onClick={withTrans(() => (timer ? stopTuning(state.stream) : starTuning()))}
+          onClick={withTrans(timer ? stopTuning : starTuning)}
           placeholder={timer ? t('common:stop') : t('common:start')}
         >
           {timer ? t('common:stop') : t('common:start')}
