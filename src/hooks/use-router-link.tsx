@@ -7,20 +7,20 @@ import type { LinkProps } from 'react-router-dom'
 export const useRouterLink = () => {
   const { pathname } = useLocation()
 
+  const isActive = (to: string) => pathToRegexp(to).test(pathname)
+
   return {
     pathname,
-    isActive: (to: string) => pathToRegexp(to).test(pathname),
+    isActive,
     Link: (props: LinkProps & { activeClsName?: string; inactiveClsName?: string }) => {
       const { to, activeClsName, inactiveClsName, className, ...rest } = props
       const target = (typeof to === 'object' ? to.pathname : to) || ''
-
-      const isActive = pathToRegexp(target).test(pathname)
 
       return (
         <Link
           className={cn(
             'text-lg font-semibold',
-            isActive ? activeClsName : inactiveClsName,
+            isActive(target) ? activeClsName : inactiveClsName,
             className,
           )}
           to={to}
