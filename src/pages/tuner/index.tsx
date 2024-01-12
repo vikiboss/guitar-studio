@@ -78,7 +78,7 @@ export function Tuner() {
               {state.pitch.toFixed(1)} Hz
               <span className='opacity-50'> / {hz} Hz</span>
             </span>
-            <span className={cn('text-[48px]', adviceColor)}>{advice}</span>
+            <span className={cn('text-[48px]', adviceColor)}>{t(`tuner:${advice}`)}</span>
             <div className='text-center mb-8'>
               <span className={cn('text-4, opacity-50')}>{t('tuner:standard-tuning')}</span>
               <div className='flex items-center gap-4 relative'>

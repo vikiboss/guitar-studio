@@ -13,6 +13,9 @@
   },
   "tuner": {
     "start-tip": "Press `start` button below to start tuning!",
-    "standard-tuning": "Standard Tuning"
+    "standard-tuning": "Standard Tuning",
+    "tune-down": "Tune down ⬇️",
+    "tune-up": "Tune up ⬆️",
+    "perfect": "Perfect 😍"
   }
 }

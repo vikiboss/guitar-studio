@@ -121,12 +121,11 @@ const Pitches: Pitch[] = [
   new Pitch('B8', 7902.13),
 ]
 
-// TODO: add i18n
 const AdviceMap = {
-  ok: 'Nice',
-  high: 'Tune Down',
-  low: 'Turn Up',
-}
+  ok: 'perfect',
+  high: 'tune-down',
+  low: 'tune-up',
+} as const
 
 export function findClosestPitch(hz: number) {
   const closestPitch = Pitches.reduce((closest, pitch) => {
