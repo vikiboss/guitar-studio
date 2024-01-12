@@ -2,7 +2,7 @@ import { AnyFunc } from '@/utils/types'
 
 export const useViewTransition = () => {
   return {
-    startTransition: (fn: AnyFunc) => document.startViewTransition(fn),
-    withTransition: (fn: AnyFunc) => () => document.startViewTransition(fn),
-  }
+    start: (fn: AnyFunc) => document.startViewTransition(fn),
+    withTrans: (fn: AnyFunc) => () => document.startViewTransition(fn),
+  } as const
 }

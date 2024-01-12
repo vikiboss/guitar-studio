@@ -3,6 +3,7 @@ import { create } from '@/utils/create-store'
 export const store = create({
   pitch: 0,
   clarity: 0,
+  stream: undefined as MediaStream | undefined,
 
   // the interval in milliseconds between each update
   interval: 50,

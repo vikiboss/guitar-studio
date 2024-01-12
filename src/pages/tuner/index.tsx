@@ -1,6 +1,5 @@
 import cn from 'classnames'
 import { Button } from '@geist-ui/core'
-import { useState } from 'react'
 import { PitchDetector } from 'pitchy'
 import { useTranslation } from 'react-i18next'
 
@@ -16,11 +15,11 @@ const STANDARD_TUNING = ['E2', 'A2', 'D3', 'G3', 'B3', 'E4']
 let timer: number = 0
 
 export function Tuner() {
-  const { t } = useTranslation(['nav'])
   const state = store.useState()
-  const render = useRender()
-  const { withTransition } = useViewTransition()
-  const [stream, setStream] = useState<MediaStream>()
+
+  const { t } = useTranslation(['nav'])
+  const { render } = useRender()
+  const { withTrans } = useViewTransition()
 
   const stopTuning = (stream?: MediaStream) => {
     if (timer) {
@@ -35,11 +34,11 @@ export function Tuner() {
   useUnmount(stopTuning)
 
   async function starTuning() {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
     const audioContext = new AudioContext()
     const analyserNode = audioContext.createAnalyser()
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
 
-    setStream(stream)
+    store.mutate.stream = stream
 
     audioContext.createMediaStreamSource(stream).connect(analyserNode)
     const detector = PitchDetector.forFloat32Array(analyserNode.fftSize)
@@ -104,7 +103,7 @@ export function Tuner() {
 
         <Button
           auto
-          onClick={withTransition(() => (timer ? stopTuning(stream) : starTuning()))}
+          onClick={withTrans(() => (timer ? stopTuning(state.stream) : starTuning()))}
           placeholder={timer ? 'stop' : 'start'}
         >
           {timer ? 'stop' : 'start'}
