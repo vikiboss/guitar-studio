@@ -83,7 +83,7 @@ export function Tuner() {
               <span className={cn('text-4, opacity-50')}>{t('tuner:standard-tuning')}</span>
               <div className='flex items-center gap-4 relative'>
                 {STANDARD_TUNING.map(tuning => {
-                  const color = tuning === note ? adviceColor : 'text-white'
+                  const color = tuning === note ? `opacity-100 ${adviceColor}` : 'opacity-50'
                   const clsName = cn('text-8 mx-2 transition-all font-medium', color)
 
                   return (
