@@ -7,8 +7,8 @@ import type { Theme } from '@/store'
 export const useTheme = () => {
   const { theme, isSystemDark } = store.useState()
 
-  const isDark = theme === 'dark'
   const isThemeSystem = theme === 'system'
+  const isDark = theme === 'dark' || (isThemeSystem && isSystemDark)
 
   useEffect(() => {
     const handleChange = (event: MediaQueryListEvent) => {

@@ -1,10 +1,6 @@
-import { chords } from '@/utils/chords'
 import { create } from '@/utils/create-store'
-import { ArrayItem } from '@/utils/types'
 
-export type Chord = typeof chords
-export type Note = keyof Chord
-export type Suffix = ArrayItem<Chord[Note]>['suffix']
+import type { Note, Suffix } from '@/utils/chords'
 
 export const store = create({
   note: 'C' as Note,

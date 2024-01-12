@@ -1,62 +1,112 @@
-import { Select } from '@geist-ui/core'
-// import { draw } from 'vexchords'
-import { useTranslation } from 'react-i18next'
-
-import { Note, store } from './store'
-import { chords } from '@/utils/chords'
+import cn from 'classnames'
+import { draw } from 'vexchords'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useMediaQuery, Select } from '@geist-ui/core'
+
+import { store } from './store'
+import { Note, chords } from '@/utils/chords'
+import { useTheme } from '@/hooks/use-theme'
 
 export function Chords() {
   const { t } = useTranslation(['nav'])
   const state = store.useState()
+  const isLg = useMediaQuery('lg')
+  const { isDark } = useTheme()
 
-  const notes = Object.keys(chords) as Note[]
-  const suffixes = chords[state.note] as { key: string; suffix: string }[]
+  const notes = Object.keys(chords)
+  const suffixes = chords[state.note]
+
+  const {
+    positions = [],
+    suffix = '',
+    key = '',
+  } = chords[state.note].find(c => c.suffix === state.suffix) || {}
+
+  const getDomId = (fingers: number[]) => {
+    return `${
+      key.replace('#', '_up_') +
+      suffix.replace('#', '_up_').replace('/', '_slash_') +
+      fingers.join('_')
+    }`
+  }
 
   useEffect(() => {
-    // draw('#chord-container', {
-    //   chord: [
-    //     [1, 2],
-    //     [2, 1],
-    //     [3, 2],
-    //     [4, 0],
-    //     [5, 'x'],
-    //     [6, 'x'],
-    //   ],
-    // })
-  }, [state.note, state.suffix])
+    positions.forEach(position => {
+      const domId = getDomId(position.fingers)
+
+      const el = document.getElementById(domId)
+      el && (el.innerHTML = '')
+
+      draw(
+        `#${domId}`,
+        {
+          chord: position.frets.map((it, idx) => [
+            6 - idx,
+            it === -1 ? 'x' : it,
+            position.fingers[idx] || '',
+          ]),
+        },
+        {
+          width: isLg ? 160 : 160,
+          height: isLg ? 240 : 240,
+          fontSize: isLg ? '16' : '16',
+          fontWeight: 'medium',
+          textColor: isDark ? '#ffffff80' : '#00000080',
+          labelColor: isDark ? '#000000' : '#ffffff',
+          strokeColor: isDark ? '#cccccc' : '#333333',
+        },
+      )
+    })
+  }, [positions, isLg, isDark])
 
   return (
     <>
       <h2>{t('nav:chords')}</h2>
-      <div className='flex gap-4'>
+      <div className={cn('flex gap-4 mt-4', isLg ? '' : 'justify-center')}>
         <Select
-          className='text-#000000/80 dark:text-white/80'
+          className='text-#000000/80 dark:text-white/80 min-w-[36vw]! lg:min-w-[160px]!'
           value={state.note}
           multiple={false}
           onChange={e => (store.mutate.note = e as Note)}
         >
           {notes.map(note => (
-            <Select.Option key={note} value={note}>
+            <Select.Option className='text-4!' key={note} value={note}>
               {note.replace('sharp', '#')}
             </Select.Option>
           ))}
         </Select>
         <Select
-          className='text-#000000/80 dark:text-white/80'
+          className='text-#000000/80 dark:text-white/80 min-w-[36vw]! lg:min-w-[160px]!'
           value={state.suffix}
           multiple={false}
           onChange={e => (store.mutate.suffix = e as string)}
         >
           {suffixes.map(suffix => (
-            <Select.Option key={suffix.key} value={suffix.suffix}>
+            <Select.Option className='text-4!' key={suffix.suffix} value={suffix.suffix}>
               {suffix.suffix}
             </Select.Option>
           ))}
         </Select>
       </div>
 
-      <div id='chord-container'></div>
+      <div className='grid grid-cols-4 gap-2 mt-4'>
+        {positions.map(position => (
+          <div
+            key={position.fingers.join('_')}
+            id={getDomId(position.fingers)}
+            className={cn('flex items-center justify-center', isLg ? 'col-span-1' : 'col-span-2')}
+          />
+        ))}
+      </div>
+
+      <div className='flex gap-1 text-slate justify-center mt-8'>
+        <span>Chord data is from</span>
+        <a rel='noreferrer' href='https://github.com/tombatossals/chords-db' target='_blank'>
+          chords-db
+        </a>
+        <span>.</span>
+      </div>
     </>
   )
 }

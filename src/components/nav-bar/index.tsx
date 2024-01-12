@@ -40,7 +40,7 @@ export function NavBar() {
             ))}
           </Tabs>
         </div>
-        <div className='flex items-center gap-2'>
+        <div className='flex items-center gap-1 lg:gap-2'>
           <Button
             onClick={() => window.open('https://github.com/vikiboss/guitar-studio', '_blank')}
             iconRight={<Github />}
