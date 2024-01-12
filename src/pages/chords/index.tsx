@@ -1,5 +1,5 @@
 import { Select } from '@geist-ui/core'
-import { draw } from 'vexchords'
+// import { draw } from 'vexchords'
 import { useTranslation } from 'react-i18next'
 
 import { Note, store } from './store'
