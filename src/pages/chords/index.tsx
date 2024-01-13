@@ -50,7 +50,7 @@ export function Chords() {
         },
         {
           width: isLg ? 160 : 160,
-          height: isLg ? 240 : 240,
+          height: isLg ? 220 : 220,
           fontSize: isLg ? '16' : '16',
           fontWeight: 'medium',
           textColor: isDark ? '#ffffff80' : '#00000080',

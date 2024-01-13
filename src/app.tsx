@@ -22,9 +22,11 @@ export function App() {
         <NavBar />
         <div className='pt-20 flex justify-center px-4'>
           <div className='max-w-[880px] w-full lg:w-[72vw]'>
-            <div className={cn('flex items-center', isLg ? '' : 'justify-center')}>
-              <h2>{t(`nav:${nav}` as never)}</h2>
-            </div>
+            {isLg && (
+              <div className={cn('flex items-center', isLg ? '' : 'justify-center')}>
+                <h2>{t(`nav:${nav}` as never)}</h2>
+              </div>
+            )}
             <Outlet />
           </div>
         </div>
