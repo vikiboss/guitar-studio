@@ -88,14 +88,16 @@ export function Chords() {
                 <div>
                   <div className='grid grid-cols-4 gap-2 mt-4'>
                     {renderChords.map(chord => (
-                      <div className='flex flex-col gap-2 items-center'>
+                      <div
+                        className={cn(
+                          'flex flex-col gap-2 items-center',
+                          isLg ? 'col-span-1' : 'col-span-2',
+                        )}
+                      >
                         <div
                           id={getDomId(chord)}
                           key={chord.positions[0].fingers.join('_')}
-                          className={cn(
-                            'flex items-center justify-center',
-                            isLg ? 'col-span-1' : 'col-span-2',
-                          )}
+                          className={cn('flex items-center justify-center')}
                         />
                         <span>{getChordName(chord)}</span>
                       </div>
