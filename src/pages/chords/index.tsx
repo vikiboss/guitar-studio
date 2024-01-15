@@ -2,102 +2,110 @@ import cn from 'classnames'
 import { draw } from 'vexchords'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useMediaQuery, Select } from '@geist-ui/core'
+import { useMediaQuery, Checkbox, Select, Tabs, useTabs } from '@geist-ui/core'
 
 import { store } from './store'
-import { Note, chords } from '@/utils/chords'
-import { useTheme } from '@/hooks/use-theme'
 import { ALink } from '@/components/a-link'
+import { CommonSuffixes, chordsDb, getChordName } from '@/utils/chords'
+import { useTheme } from '@/hooks/use-theme'
+
+import type { Chord, ChordKey, ChordSuffix } from '@/utils/chords'
+
+const getStyle = (isLg: boolean, isDark: boolean) => ({
+  width: isLg ? 160 : 160,
+  height: isLg ? 220 : 220,
+  fontSize: isLg ? '16' : '16',
+  fontWeight: 'medium',
+  textColor: isDark ? '#ffffff80' : '#00000080',
+  labelColor: isDark ? '#000000' : '#ffffff',
+  strokeColor: isDark ? '#cccccc' : '#333333',
+})
 
 export function Chords() {
   const { t } = useTranslation(['nav'])
-  const state = store.useState()
+  const { key, showAllSuffixes } = store.useState()
   const isLg = useMediaQuery('lg')
   const { isDark } = useTheme()
 
-  const notes = Object.keys(chords)
-  const suffixes = chords[state.note]
+  const chords = chordsDb.chords[key.replace('#', 'sharp') as ChordKey]
 
-  const {
-    positions = [],
-    suffix = '',
-    key = '',
-  } = chords[state.note].find(c => c.suffix === state.suffix) || {}
+  const renderChords = showAllSuffixes
+    ? chords
+    : chords.filter(e => CommonSuffixes.includes(e.suffix))
 
-  const getDomId = (fingers: number[]) => {
-    return `${
-      key.replace('#', '_up_') +
-      suffix.replace('#', '_up_').replace('/', '_slash_') +
-      fingers.join('_')
-    }`
+  const getDomId = (chord: Chord) => {
+    const _key = chord.key.replace('#', '_up_')
+    const _suffix = chord.suffix.replace('#', '_up_').replace('/', '_slash_')
+    return _key + _suffix
   }
 
   useEffect(() => {
-    positions.forEach(position => {
-      const domId = getDomId(position.fingers)
+    renderChords.forEach(e => {
+      const p = e.positions[0]
+      const domId = getDomId(e)
 
       const el = document.getElementById(domId)
-      el && (el.innerHTML = '')
 
-      draw(
-        `#${domId}`,
-        {
-          chord: position.frets.map((it, idx) => [
-            6 - idx,
-            it === -1 ? 'x' : it,
-            position.fingers[idx] || '',
-          ]),
-        },
-        {
-          width: isLg ? 160 : 160,
-          height: isLg ? 220 : 220,
-          fontSize: isLg ? '16' : '16',
-          fontWeight: 'medium',
-          textColor: isDark ? '#ffffff80' : '#00000080',
-          labelColor: isDark ? '#000000' : '#ffffff',
-          strokeColor: isDark ? '#cccccc' : '#333333',
-        },
-      )
+      if (el) {
+        el.innerHTML = ''
+
+        const chord = p.frets.map((it, idx) => [
+          6 - idx,
+          it === -1 ? 'x' : it,
+          p.fingers[idx] || '',
+        ])
+
+        console.log('domId', domId, 'chord', chord)
+        try {
+          draw(`#${domId}`, { chord }, getStyle(isLg, isDark))
+        } catch (e) {
+          console.error(e)
+        }
+      }
     })
-  }, [positions, isLg, isDark])
+  }, [renderChords, isLg, isDark])
 
   return (
     <>
-      <div className={cn('flex gap-4 mt-4', isLg ? '' : 'justify-center')}>
-        <Select
-          className='text-#000000/80 dark:text-white/80 min-w-[36vw]! lg:min-w-[160px]!'
-          value={state.note}
-          multiple={false}
-          onChange={e => (store.mutate.note = e as Note)}
+      <div className={cn('flex gap-4 mt-4 flex-wrap', isLg ? '' : 'justify-center')}>
+        <Tabs
+          value={key}
+          className='max-w-[92vw] lg:w-[880px]!'
+          onChange={e => (store.mutate.key = e as ChordKey)}
         >
-          {notes.map(note => (
-            <Select.Option className='text-4!' key={note} value={note}>
-              {note.replace('sharp', '#')}
-            </Select.Option>
+          {chordsDb.keys.map(key => (
+            <Tabs.Item key={key} label={key} value={key}>
+              <div className='flex flex-col'>
+                <div className='flex justify-end'>
+                  <Checkbox
+                    initialChecked={showAllSuffixes}
+                    checked={showAllSuffixes}
+                    onChange={e => (store.mutate.showAllSuffixes = e.target.checked)}
+                  >
+                    Show All Chords
+                  </Checkbox>
+                </div>
+                <div>
+                  <div className='grid grid-cols-4 gap-2 mt-4'>
+                    {renderChords.map(chord => (
+                      <div className='flex flex-col gap-2 items-center'>
+                        <div
+                          id={getDomId(chord)}
+                          key={chord.positions[0].fingers.join('_')}
+                          className={cn(
+                            'flex items-center justify-center',
+                            isLg ? 'col-span-1' : 'col-span-2',
+                          )}
+                        />
+                        <span>{getChordName(chord)}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Tabs.Item>
           ))}
-        </Select>
-        <Select
-          className='text-#000000/80 dark:text-white/80 min-w-[36vw]! lg:min-w-[160px]!'
-          value={state.suffix}
-          multiple={false}
-          onChange={e => (store.mutate.suffix = e as string)}
-        >
-          {suffixes.map(suffix => (
-            <Select.Option className='text-4!' key={suffix.suffix} value={suffix.suffix}>
-              {suffix.suffix}
-            </Select.Option>
-          ))}
-        </Select>
-      </div>
-
-      <div className='grid grid-cols-4 gap-2 mt-4'>
-        {positions.map(position => (
-          <div
-            key={position.fingers.join('_')}
-            id={getDomId(position.fingers)}
-            className={cn('flex items-center justify-center', isLg ? 'col-span-1' : 'col-span-2')}
-          />
-        ))}
+        </Tabs>
       </div>
 
       <div className='flex gap-1 text-slate justify-center mt-8'>

@@ -25,7 +25,7 @@ export function NavBar() {
   const nextLang = langs[(langs.indexOf(i18n.language) + 1) % langs.length]
 
   return (
-    <div className='w-full flex items-center justify-center relative'>
+    <div id='nav' className='w-full flex items-center justify-center relative'>
       <div className='h-12 top-2 lg:top-4 px-2 fixed flex items-center justify-between rounded-2 w-[calc(100vw-2rem)] mx-4 lg:w-[880px] bg-[#eeeeee] dark:bg-dark'>
         <div className='flex items-center gap-2'>
           <Tabs

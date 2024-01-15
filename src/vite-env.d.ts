@@ -32,7 +32,7 @@ declare module 'vexchords' {
   export function draw(
     element: string,
     options?: {
-      chord: [number, number | string, number | string][]
+      chord: (number | string)[][]
       position?: number
       barres?: { fromString: number; toString: number; fret: number }[]
       tuning?: string[]

@@ -7,7 +7,7 @@ span {
   box-sizing: border-box;
 }
 
-.tabs .content {
+#nav .tabs .content {
   display: none;
 }
 
