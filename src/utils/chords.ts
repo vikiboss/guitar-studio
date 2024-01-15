@@ -8,6 +8,7 @@ export const chordsDb = {
   tunings: data.tunings as Tunings,
 }
 
+export const OrderedKeyList = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C#', 'Eb', 'F#', 'Ab', 'Bb']
 export const CommonSuffixes = ['major', 'minor', '7', 'maj7', 'm7', 'sus4'] as ChordSuffix[]
 
 export type Chord = {

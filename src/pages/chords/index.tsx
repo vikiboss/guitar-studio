@@ -2,14 +2,14 @@ import cn from 'classnames'
 import { draw } from 'vexchords'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useMediaQuery, Checkbox, Select, Tabs, useTabs } from '@geist-ui/core'
+import { useMediaQuery, Checkbox, Tabs } from '@geist-ui/core'
 
 import { store } from './store'
 import { ALink } from '@/components/a-link'
-import { CommonSuffixes, chordsDb, getChordName } from '@/utils/chords'
 import { useTheme } from '@/hooks/use-theme'
+import { CommonSuffixes, OrderedKeyList, chordsDb, getChordName } from '@/utils/chords'
 
-import type { Chord, ChordKey, ChordSuffix } from '@/utils/chords'
+import type { Chord, ChordKey } from '@/utils/chords'
 
 const getStyle = (isLg: boolean, isDark: boolean) => ({
   width: isLg ? 160 : 160,
@@ -73,7 +73,7 @@ export function Chords() {
           className='max-w-[92vw] lg:w-[880px]!'
           onChange={e => (store.mutate.key = e as ChordKey)}
         >
-          {chordsDb.keys.map(key => (
+          {OrderedKeyList.map(key => (
             <Tabs.Item key={key} label={key} value={key}>
               <div className='flex flex-col'>
                 <div className='flex justify-end'>
