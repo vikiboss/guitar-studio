@@ -82,6 +82,7 @@ export function Chords() {
                     checked={showAllSuffixes}
                     onChange={e => (store.mutate.showAllSuffixes = e.target.checked)}
                   >
+                    {/* TODO: add i18n */}
                     Show All Chords
                   </Checkbox>
                 </div>
