@@ -40,28 +40,25 @@ export function Chords() {
   }
 
   useEffect(() => {
-    renderChords.forEach(e => {
-      const p = e.positions[0]
-      const domId = getDomId(e)
+    queueMicrotask(() => {
+      renderChords.forEach(e => {
+        const p = e.positions[0]
+        const domId = getDomId(e)
 
-      const el = document.getElementById(domId)
-
-      if (el) {
-        el.innerHTML = ''
+        document.getElementById(domId)!.innerHTML = ''
 
         const chord = p.frets.map((it, idx) => [
           6 - idx,
           it === -1 ? 'x' : it,
-          p.fingers[idx] || '',
+          p.fingers[idx] ?? '',
         ])
 
-        console.log('domId', domId, 'chord', chord)
         try {
           draw(`#${domId}`, { chord }, getStyle(isLg, isDark))
         } catch (e) {
           console.error(e)
         }
-      }
+      })
     })
   }, [renderChords, isLg, isDark])
 
@@ -90,6 +87,7 @@ export function Chords() {
                   <div className='grid grid-cols-4 gap-2 mt-4'>
                     {renderChords.map(chord => (
                       <div
+                        key={chord.key + chord.suffix}
                         className={cn(
                           'flex flex-col gap-2 items-center',
                           isLg ? 'col-span-1' : 'col-span-2',
@@ -111,7 +109,7 @@ export function Chords() {
         </Tabs>
       </div>
 
-      <div className='flex gap-1 text-slate justify-center mt-8'>
+      <div className='flex gap-1 text-slate justify-center my-8'>
         <span>Chord data is from</span>
         <ALink href='https://github.com/tombatossals/chords-db'>chords-db</ALink>
         <span>.</span>

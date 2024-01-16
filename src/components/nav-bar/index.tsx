@@ -5,6 +5,7 @@ import { useTheme } from '@/hooks/use-theme'
 import { useNavigate } from 'react-router-dom'
 import { useRouterLink } from '@/hooks/use-router-link'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
 
 const langMap: Record<string, string> = {
   en: 'EN',
@@ -20,9 +21,11 @@ export function NavBar() {
   const { isDark, isSystem, setTheme } = useTheme()
 
   const navList = Object.keys(i18n.options.resources?.en?.nav ?? {}) as never[]
-  const langs = Object.keys(i18n.options.resources || {})
+  const langs = Object.keys(i18n.options.resources ?? {})
   const nextTheme = isSystem ? 'light' : isDark ? 'system' : 'dark'
   const nextLang = langs[(langs.indexOf(i18n.language) + 1) % langs.length]
+
+  useEffect(() => void (!i18n.language && i18n.changeLanguage('en')), [i18n.language])
 
   return (
     <div id='nav' className='w-full flex items-center justify-center relative'>
