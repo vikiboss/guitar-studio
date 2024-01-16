@@ -32,7 +32,7 @@ export function Chords() {
   const chords = chordsDb.chords[key.replace('#', 'sharp') as ChordKey]
 
   const renderChords = showAllSuffixes
-    ? chords
+    ? chords.sort(a => (CommonSuffixes.includes(a.suffix) ? -1 : 1))
     : chords.filter(e => CommonSuffixes.includes(e.suffix))
 
   const getDomId = (chord: Chord) => {
