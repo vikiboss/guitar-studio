@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { Github } from '@geist-ui/icons'
 
 import { ALink } from '@/components/a-link'
 
@@ -7,13 +8,67 @@ export function Home() {
 
   return (
     <div>
-      <h3>Hi, there 👋!</h3>
+      <h3>Hi, there! 👋</h3>
       <p>
-        This project is under developing, feel free to make suggestions at
-        <ALink href='https://github.com/vikiboss/guitar-studio'>GitHub</ALink>.
+        Welcome to 🎸 Guitar Studio, it's your <b>all-in-one</b> guitar online toolkit 🛠️.
       </p>
 
-      <p>Enjoy your guitar trip!</p>
+      <p>
+        This project is
+        <ALink href='https://github.com/vikiboss/guitar-studio'>Open Source</ALink>
+        and <b>under developing</b>, feel free to make suggestions at
+        <ALink href='https://github.com/vikiboss/guitar-studio'>
+          <Github size={14} className='mr-1' />
+          GitHub
+        </ALink>
+        .
+      </p>
+
+      <p>Enjoy your guitar trip! 🎉</p>
+
+      <h3>Tech Stacks</h3>
+      <ul>
+        <li>
+          <ALink href='https://reactjs.org/'>React</ALink>
+        </li>
+        <li>
+          <ALink href='https://www.typescriptlang.org/'>TypeScript</ALink>
+        </li>
+        <li>
+          <ALink href='https://unocss.dev/'>UnoCSS</ALink>
+        </li>
+        <li>
+          <ALink href='https://vitejs.dev/'>Vite</ALink>
+        </li>
+      </ul>
+      <h3>Credits</h3>
+      <p>Thanks to the following awesome projects / npm packages:</p>
+      <ul>
+        <li>
+          <ALink href='https://github.com/ianprime0509/pitchy'>pitchy</ALink>
+        </li>
+        <li>
+          <ALink href='https://github.com/tombatossals/chords-db'>chords-db</ALink> (
+          <ALink href='https://github.com/tombatossals/chords-db/blob/master/lib/guitar.json'>
+            lib/guitar.json
+          </ALink>
+          )
+        </li>
+        <li>
+          <ALink href='https://github.com/0xfe/vexchords'>vexchords</ALink>
+        </li>
+        <li>
+          <ALink href='https://github.com/Tonejs/Tone.js'>Tone.js</ALink>
+        </li>
+        <li>
+          <ALink href='https://github.com/saebekassebil/teoria'>teoria</ALink>
+        </li>
+      </ul>
+
+      <h3>Open Source License</h3>
+      <p>
+        <ALink href='https://github.com/vikiboss/guitar-studio/blob/main/LICENSE'>MIT</ALink>
+      </p>
     </div>
   )
 }

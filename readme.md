@@ -13,6 +13,15 @@
 - [x] [UnoCSS](https://unocss.dev/)
 - [x] [Vite](https://vitejs.dev/)
 
+## TODO
+
+- [x] Tuner
+- [x] Chords
+- [ ] Scales
+- [ ] Metronome
+- [ ] Ear Training
+- [ ] Guitar Simulator
+
 ## Credits
 
 Thanks to the following awesome projects / npm packages:
