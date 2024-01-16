@@ -21,7 +21,7 @@ const getStyle = (isLg: boolean, isDark: boolean) => ({
   strokeColor: isDark ? '#cccccc' : '#333333',
 })
 
-const doMacroTask = (cb: () => void) => setTimeout(() => void cb())
+const doMicroTask = (cb: () => void) => queueMicrotask(() => void cb())
 
 export function Chords() {
   const { t } = useTranslation(['nav'])
@@ -42,12 +42,13 @@ export function Chords() {
   }
 
   useEffect(() => {
-    doMacroTask(() => {
+    doMicroTask(() => {
       renderChords.forEach(e => {
         const p = e.positions[0]
         const domId = getDomId(e)
 
-        document.getElementById(domId)!.innerHTML = ''
+        const el = document.getElementById(domId)
+        el && (el.innerHTML = '')
 
         const chord = p.frets.map((it, idx) => [
           6 - idx,
