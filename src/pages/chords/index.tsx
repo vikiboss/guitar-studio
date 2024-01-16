@@ -10,7 +10,6 @@ import { useTheme } from '@/hooks/use-theme'
 import { CommonSuffixes, OrderedKeyList, chordsDb, getChordName } from '@/utils/chords'
 
 import type { Chord, ChordKey } from '@/utils/chords'
-import { useViewTransition } from '@/hooks/use-view-transition'
 
 const getStyle = (isLg: boolean, isDark: boolean) => ({
   width: isLg ? 160 : 160,
@@ -22,7 +21,7 @@ const getStyle = (isLg: boolean, isDark: boolean) => ({
   strokeColor: isDark ? '#cccccc' : '#333333',
 })
 
-const doMicroTask = (cb: () => void) => queueMicrotask(() => void cb())
+const doMacroTask = (cb: () => void) => setTimeout(cb)
 
 export function Chords() {
   const isLg = useMediaQuery('lg')
@@ -43,7 +42,7 @@ export function Chords() {
   }
 
   useEffect(() => {
-    doMicroTask(() => {
+    doMacroTask(() => {
       store.mutate.printing = true
       renderChords.forEach(e => {
         const p = e.positions[0]
