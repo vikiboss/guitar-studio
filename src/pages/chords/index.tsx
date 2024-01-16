@@ -10,6 +10,7 @@ import { useTheme } from '@/hooks/use-theme'
 import { CommonSuffixes, OrderedKeyList, chordsDb, getChordName } from '@/utils/chords'
 
 import type { Chord, ChordKey } from '@/utils/chords'
+import { useViewTransition } from '@/hooks/use-view-transition'
 
 const getStyle = (isLg: boolean, isDark: boolean) => ({
   width: isLg ? 160 : 160,
@@ -24,11 +25,11 @@ const getStyle = (isLg: boolean, isDark: boolean) => ({
 const doMicroTask = (cb: () => void) => queueMicrotask(() => void cb())
 
 export function Chords() {
-  const { t } = useTranslation(['nav'])
-  const { key, showAllSuffixes } = store.useState()
   const isLg = useMediaQuery('lg')
+  const { t } = useTranslation(['nav'])
   const { isDark } = useTheme()
 
+  const { key, printing, showAllSuffixes } = store.useState()
   const chords = chordsDb.chords[key.replace('#', 'sharp') as ChordKey]
 
   const renderChords = showAllSuffixes
@@ -43,30 +44,32 @@ export function Chords() {
 
   useEffect(() => {
     doMicroTask(() => {
+      store.mutate.printing = true
       renderChords.forEach(e => {
         const p = e.positions[0]
         const domId = getDomId(e)
 
         const el = document.getElementById(domId)
-        el && (el.innerHTML = '')
 
-        const chord = p.frets.map((it, idx) => [
-          6 - idx,
-          it === -1 ? 'x' : it,
-          p.fingers[idx] ?? '',
-        ])
+        if (el) {
+          el.innerHTML = ''
 
-        try {
+          const chord = p.frets.map((it, idx) => [
+            6 - idx,
+            it === -1 ? 'x' : it,
+            p.fingers[idx] ?? '',
+          ])
+
           draw(`#${domId}`, { chord }, getStyle(isLg, isDark))
-        } catch (e) {
-          console.error(e)
+
+          store.mutate.printing = false
         }
       })
     })
   }, [renderChords, isLg, isDark])
 
   return (
-    <>
+    <div className={cn('transition-all', printing ? 'opacity-0' : "'opacity-100")}>
       <div className={cn('flex gap-4 mt-4 flex-wrap', isLg ? '' : 'justify-center')}>
         <Tabs
           value={key}
@@ -117,6 +120,6 @@ export function Chords() {
         <ALink href='https://github.com/tombatossals/chords-db'>chords-db</ALink>
         <span>.</span>
       </div>
-    </>
+    </div>
   )
 }

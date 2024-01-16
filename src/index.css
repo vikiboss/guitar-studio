@@ -1,7 +1,4 @@
-html,
-body,
-div,
-span {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -11,26 +8,25 @@ span {
   display: none;
 }
 
-.tab {
+#main .tab {
   font-weight: 500 !important;
 }
 
-.scroll-container {
+#main .scroll-container {
   padding-left: 6px !important;
   border-bottom: none !important;
 }
 
-a {
+#main a {
   transition: all 0.1s ease;
 }
 
-a:is(:link, :visited) {
-  color: #0070f3dd;
+#main a:is(:link, :visited) {
+  color: #0070f3;
   text-decoration: none;
 }
 
-a:is(:hover, :active) {
-  color: #0070f3;
-  text-decoration: underline !important;
-  -webkit-text-decoration: underline !important;
+#main a:is(:hover, :active) {
+  text-decoration: underline;
+  -webkit-text-decoration: underline;
 }
