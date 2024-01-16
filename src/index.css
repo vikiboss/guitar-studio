@@ -19,3 +19,18 @@ span {
   padding-left: 6px !important;
   border-bottom: none !important;
 }
+
+a {
+  transition: all 0.1s ease;
+}
+
+a:is(:link, :visited) {
+  color: #0070f3dd;
+  text-decoration: none;
+}
+
+a:is(:hover, :active) {
+  color: #0070f3;
+  text-decoration: underline !important;
+  -webkit-text-decoration: underline !important;
+}

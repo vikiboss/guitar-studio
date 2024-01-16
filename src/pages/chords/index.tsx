@@ -21,6 +21,8 @@ const getStyle = (isLg: boolean, isDark: boolean) => ({
   strokeColor: isDark ? '#cccccc' : '#333333',
 })
 
+const doMacroTask = (cb: () => void) => setTimeout(() => void cb())
+
 export function Chords() {
   const { t } = useTranslation(['nav'])
   const { key, showAllSuffixes } = store.useState()
@@ -40,7 +42,7 @@ export function Chords() {
   }
 
   useEffect(() => {
-    queueMicrotask(() => {
+    doMacroTask(() => {
       renderChords.forEach(e => {
         const p = e.positions[0]
         const domId = getDomId(e)
@@ -84,7 +86,7 @@ export function Chords() {
                   </Checkbox>
                 </div>
                 <div>
-                  <div className='grid grid-cols-4 gap-2 mt-4'>
+                  <div className='grid grid-cols-4 mt-4'>
                     {renderChords.map(chord => (
                       <div
                         key={chord.key + chord.suffix}
@@ -109,8 +111,8 @@ export function Chords() {
         </Tabs>
       </div>
 
-      <div className='flex gap-1 text-slate justify-center my-8'>
-        <span>Chord data is from</span>
+      <div className='flex text-slate/80 justify-center my-8'>
+        Chord data is from&nbsp;
         <ALink href='https://github.com/tombatossals/chords-db'>chords-db</ALink>
         <span>.</span>
       </div>

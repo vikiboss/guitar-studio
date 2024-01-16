@@ -10,13 +10,13 @@ export function Home() {
     <div>
       <h3>Hi, there! 👋</h3>
       <p>
-        Welcome to 🎸 Guitar Studio, it's your <b>all-in-one</b> guitar online toolkit 🛠️.
+        Welcome to 🎸 Guitar Studio, your <b>all-in-one</b> guitar online toolkit 🛠️.
       </p>
 
       <p>
-        This project is
-        <ALink href='https://github.com/vikiboss/guitar-studio'>Open Source</ALink>
-        and <b>under developing</b>, feel free to make suggestions at
+        This project is&nbsp;
+        <ALink href='https://github.com/vikiboss/guitar-studio'>Open Source</ALink> and&nbsp;
+        <b>under developing</b>, feel free to feedback or make suggestions at&nbsp;
         <ALink href='https://github.com/vikiboss/guitar-studio'>
           <Github size={14} className='mr-1' />
           GitHub
@@ -65,7 +65,7 @@ export function Home() {
         </li>
       </ul>
 
-      <h3>Open Source License</h3>
+      <h3>License</h3>
       <p>
         <ALink href='https://github.com/vikiboss/guitar-studio/blob/main/LICENSE'>MIT</ALink>
       </p>
