@@ -21,18 +21,19 @@ const getStyle = (isLg: boolean, isDark: boolean) => ({
   strokeColor: isDark ? '#cccccc' : '#333333',
 })
 
-const doMacroTask = (cb: () => void) => setTimeout(cb)
-
 export function Chords() {
   const isLg = useMediaQuery('lg')
   const { t } = useTranslation(['nav'])
   const { isDark } = useTheme()
 
-  const { key, printing, showAllSuffixes } = store.useState()
-  const chords = chordsDb.chords[key.replace('#', 'sharp') as ChordKey]
+  const { key, showAllSuffixes } = store.useState()
+
+  const chords = chordsDb.chords[key.replace('#', 'sharp') as ChordKey].sort((a, b) => {
+    return CommonSuffixes.includes(a.suffix) ? -1 : 1
+  })
 
   const renderChords = showAllSuffixes
-    ? chords.sort(a => (CommonSuffixes.includes(a.suffix) ? -1 : 1))
+    ? chords
     : chords.filter(e => CommonSuffixes.includes(e.suffix))
 
   const getDomId = (chord: Chord) => {
@@ -42,43 +43,41 @@ export function Chords() {
   }
 
   useEffect(() => {
-    doMacroTask(() => {
-      store.mutate.printing = true
-      renderChords.forEach(e => {
-        const p = e.positions[0]
-        const domId = getDomId(e)
+    renderChords.forEach(e => {
+      const p = e.positions[0]
+      const domId = getDomId(e)
 
-        const el = document.getElementById(domId)
+      const el = document.getElementById(domId)
 
-        if (el) {
-          el.innerHTML = ''
+      if (el) {
+        el.innerHTML = ''
 
-          const chord = p.frets.map((it, idx) => [
-            6 - idx,
-            it === -1 ? 'x' : it,
-            p.fingers[idx] ?? '',
-          ])
+        const chord = p.frets.map((it, idx) => [
+          6 - idx,
+          it === -1 ? 'x' : it,
+          p.fingers[idx] ?? '',
+        ])
 
-          draw(`#${domId}`, { chord }, getStyle(isLg, isDark))
-
-          store.mutate.printing = false
-        }
-      })
+        draw(`#${domId}`, { chord }, getStyle(isLg, isDark))
+      }
     })
   }, [renderChords, isLg, isDark])
 
   return (
-    <div className={cn('transition-all', printing ? 'opacity-0' : "'opacity-100")}>
+    <div className={cn('transition-all')}>
       <div className={cn('flex gap-4 mt-4 flex-wrap', isLg ? '' : 'justify-center')}>
         <Tabs
           value={key}
           className='max-w-[92vw] lg:w-[880px]!'
           onChange={e => (store.mutate.key = e as ChordKey)}
         >
-          {OrderedKeyList.map(key => (
-            <Tabs.Item key={key} label={key} value={key}>
+          {OrderedKeyList.map(orderedKey => (
+            <Tabs.Item key={orderedKey} label={orderedKey} value={orderedKey}>
               <div className='flex flex-col'>
-                <div className='flex justify-end'>
+                <div className='flex items-center justify-between px-2'>
+                  <div>
+                    {key} - {renderChords.length} chords showed in total.
+                  </div>
                   <Checkbox
                     initialChecked={showAllSuffixes}
                     checked={showAllSuffixes}
@@ -90,12 +89,15 @@ export function Chords() {
                 </div>
                 <div>
                   <div className='grid grid-cols-4 mt-4'>
-                    {renderChords.map(chord => (
+                    {chordsDb.chords[orderedKey.replace('#', 'sharp') as ChordKey].map(chord => (
                       <div
                         key={chord.key + chord.suffix}
                         className={cn(
-                          'flex flex-col gap-2 items-center',
+                          'flex-col gap-2 items-center',
                           isLg ? 'col-span-1' : 'col-span-2',
+                          !showAllSuffixes && !CommonSuffixes.includes(chord.suffix)
+                            ? 'hidden'
+                            : 'flex',
                         )}
                       >
                         <div
