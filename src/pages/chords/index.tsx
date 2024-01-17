@@ -10,6 +10,7 @@ import { useTheme } from '@/hooks/use-theme'
 import { CommonSuffixes, OrderedKeyList, chordsDb, getChordName } from '@/utils/chords'
 
 import type { Chord, ChordKey } from '@/utils/chords'
+import { useMount } from '@/hooks/use-mount'
 
 const getStyle = (isLg: boolean, isDark: boolean) => ({
   width: isLg ? 160 : 160,
@@ -28,9 +29,10 @@ export function Chords() {
 
   const { key, showAllSuffixes } = store.useState()
 
-  const chords = chordsDb.chords[key.replace('#', 'sharp') as ChordKey].sort((a, b) => {
-    return CommonSuffixes.includes(a.suffix) ? -1 : 1
-  })
+  const idxKey = key.replace('#', 'sharp') as ChordKey
+  const chords = [...chordsDb.chords[idxKey]]
+
+  chords.sort(a => (CommonSuffixes.includes(a.suffix) ? -1 : 1))
 
   const renderChords = showAllSuffixes
     ? chords
@@ -42,26 +44,24 @@ export function Chords() {
     return _key + _suffix
   }
 
-  useEffect(() => {
+  const render = () => {
     renderChords.forEach(e => {
-      const p = e.positions[0]
       const domId = getDomId(e)
 
       const el = document.getElementById(domId)
+      if (!el) return
 
-      if (el) {
-        el.innerHTML = ''
+      el.innerHTML = ''
 
-        const chord = p.frets.map((it, idx) => [
-          6 - idx,
-          it === -1 ? 'x' : it,
-          p.fingers[idx] ?? '',
-        ])
+      const p = e.positions[0]
+      const chord = p.frets.map((it, idx) => [6 - idx, it === -1 ? 'x' : it, p.fingers[idx] ?? ''])
 
-        draw(`#${domId}`, { chord }, getStyle(isLg, isDark))
-      }
+      draw(`#${domId}`, { chord }, getStyle(isLg, isDark))
     })
-  }, [renderChords, isLg, isDark])
+  }
+
+  useMount(() => setTimeout(render, 100))
+  useEffect(() => void render(), [renderChords, isLg, isDark])
 
   return (
     <div className={cn('transition-all')}>
@@ -89,25 +89,27 @@ export function Chords() {
                 </div>
                 <div>
                   <div className='grid grid-cols-4 mt-4'>
-                    {chordsDb.chords[orderedKey.replace('#', 'sharp') as ChordKey].map(chord => (
-                      <div
-                        key={chord.key + chord.suffix}
-                        className={cn(
-                          'flex-col gap-2 items-center',
-                          isLg ? 'col-span-1' : 'col-span-2',
-                          !showAllSuffixes && !CommonSuffixes.includes(chord.suffix)
-                            ? 'hidden'
-                            : 'flex',
-                        )}
-                      >
+                    {chords.map(chord => {
+                      const isShow = showAllSuffixes || CommonSuffixes.includes(chord.suffix)
+
+                      return (
                         <div
-                          id={getDomId(chord)}
-                          key={chord.positions[0].fingers.join('_')}
-                          className={cn('flex items-center justify-center')}
-                        />
-                        <span>{getChordName(chord)}</span>
-                      </div>
-                    ))}
+                          key={chord.key + chord.suffix}
+                          className={cn(
+                            'flex-col gap-2 items-center',
+                            isLg ? 'col-span-1' : 'col-span-2',
+                            isShow ? 'flex' : 'hidden',
+                          )}
+                        >
+                          <div
+                            id={getDomId(chord)}
+                            key={chord.positions[0].fingers.join('_')}
+                            className={cn('flex items-center justify-center')}
+                          />
+                          <span>{getChordName(chord)}</span>
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
               </div>
