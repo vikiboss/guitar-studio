@@ -32,7 +32,11 @@ export function Chords() {
   const idxKey = key.replace('#', 'sharp') as ChordKey
   const chords = [...chordsDb.chords[idxKey]]
 
-  chords.sort(a => (CommonSuffixes.includes(a.suffix) ? -1 : 1))
+  chords.sort((p, n) => {
+    const p_idx = CommonSuffixes.indexOf(p.suffix)
+    const n_idx = CommonSuffixes.indexOf(n.suffix)
+    return p_idx === -1 ? 1 : n_idx === -1 ? -1 : p_idx - n_idx
+  })
 
   const renderChords = showAllSuffixes
     ? chords
@@ -62,6 +66,8 @@ export function Chords() {
 
   useMount(() => setTimeout(render, 100))
   useEffect(() => void render(), [renderChords, isLg, isDark])
+
+  console.log(chords)
 
   return (
     <div className={cn('transition-all')}>
