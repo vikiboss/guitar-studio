@@ -67,8 +67,6 @@ export function Chords() {
   useMount(() => setTimeout(render, 100))
   useEffect(() => void render(), [renderChords, isLg, isDark])
 
-  console.log(chords)
-
   return (
     <div className={cn('transition-all')}>
       <div className={cn('flex gap-4 mt-4 flex-wrap', isLg ? '' : 'justify-center')}>
