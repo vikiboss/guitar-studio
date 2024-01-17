@@ -17,5 +17,9 @@
     "tune-down": "下げる ⬇️",
     "tune-up": "上げる ⬆️",
     "perfect": "完璧 😍"
+  },
+  "chords": {
+    "show-all-chords": "すべてのコードを表示",
+    "show-chords-total": "{{key}} - 合計 {{total}} コードが表示されました"
   }
 }

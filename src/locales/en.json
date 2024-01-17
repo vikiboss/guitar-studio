@@ -17,5 +17,9 @@
     "tune-down": "Tune down ⬇️",
     "tune-up": "Tune up ⬆️",
     "perfect": "Perfect 😍"
+  },
+  "chords": {
+    "show-all-chords": "Show all chords",
+    "show-chords-total": "{{key}} - {{total}} chords showed in total"
   }
 }

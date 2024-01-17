@@ -17,5 +17,9 @@
     "tune-down": "調低 ⬇️",
     "tune-up": "調高 ⬆️",
     "perfect": "完美 😍"
+  },
+  "chords": {
+    "show-all-chords": "顯示所有和弦",
+    "show-chords-total": "{{key}} - 總共顯示了 {{total}} 個和弦"
   }
 }

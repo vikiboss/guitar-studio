@@ -24,7 +24,7 @@ const getStyle = (isLg: boolean, isDark: boolean) => ({
 
 export function Chords() {
   const isLg = useMediaQuery('lg')
-  const { t } = useTranslation(['nav'])
+  const { t } = useTranslation(['nav', 'chords'])
   const { isDark } = useTheme()
 
   const { key, showAllSuffixes } = store.useState()
@@ -79,16 +79,13 @@ export function Chords() {
             <Tabs.Item key={orderedKey} label={orderedKey} value={orderedKey}>
               <div className='flex flex-col'>
                 <div className='flex items-center justify-between px-2'>
-                  <div>
-                    {key} - {renderChords.length} chords showed in total.
-                  </div>
+                  <div>{t('chords:show-chords-total', { key, total: renderChords.length })}</div>
                   <Checkbox
                     initialChecked={showAllSuffixes}
                     checked={showAllSuffixes}
                     onChange={e => (store.mutate.showAllSuffixes = e.target.checked)}
                   >
-                    {/* TODO: add i18n */}
-                    Show All Chords
+                    {t('chords:show-all-chords')}
                   </Checkbox>
                 </div>
                 <div>
