@@ -17,8 +17,8 @@
 
 - [x] Tuner
 - [x] Chords
-- [ ] Scales
 - [ ] Metronome
+- [ ] Tablature
 - [ ] Ear Training
 - [ ] Guitar Simulator
 

@@ -6,7 +6,7 @@ import { Tuner } from './pages/tuner'
 import { Chords } from './pages/chords'
 import { Tablature } from './pages/tablature'
 import { Metronome } from './pages/metronome'
-import { PitchTraining } from './pages/pitch-training'
+import { EarTraining } from './pages/ear-training'
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
       { path: '/tuner', element: <Tuner /> },
       { path: '/metronome', element: <Metronome /> },
       { path: '/chords', element: <Chords /> },
-      { path: '/pitch-training', element: <PitchTraining /> },
+      { path: '/ear-training', element: <EarTraining /> },
       { path: '/tablature', element: <Tablature /> },
     ],
   },

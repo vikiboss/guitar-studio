@@ -117,8 +117,8 @@ export function Chords() {
       </div>
 
       <div className='flex text-slate/80 justify-center my-8'>
-        Chord data is from&nbsp;
-        <ALink href='https://github.com/tombatossals/chords-db'>chords-db</ALink>
+        Chords data are from&nbsp;
+        <ALink href='https://github.com/tombatossals/chords-db'>`chords-db`</ALink>
         <span>.</span>
       </div>
     </div>
