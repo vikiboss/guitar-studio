@@ -23,7 +23,7 @@ export function Metronome() {
         <div className='flex-col-center'>
           <CountUp className='text-24' start={preValue} end={state.bmp} duration={0.1} />
           <span className='tracking-wide bg-zinc-2 dark:bg-zinc-6 px-3 py-1 rounded text-center'>
-            BMP
+            BPM
           </span>
         </div>
 

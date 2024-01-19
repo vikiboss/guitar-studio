@@ -1,4 +1,4 @@
-import { create } from './utils/create-store'
+import { create } from '../utils/create-store'
 
 export type Theme = 'light' | 'dark' | 'system'
 

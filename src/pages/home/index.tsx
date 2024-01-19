@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Github } from '@geist-ui/icons'
 
-import { ALink } from '@/components/a-link'
+import { Anchor } from '@/components/anchor'
 
 export function Home() {
   const { t } = useTranslation(['nav'])
@@ -15,12 +15,12 @@ export function Home() {
 
       <p>
         This project is&nbsp;
-        <ALink href='https://github.com/vikiboss/guitar-studio'>Open Source</ALink> and&nbsp;
+        <Anchor href='https://github.com/vikiboss/guitar-studio'>Open Source</Anchor> and&nbsp;
         <b>under developing</b>, feel free to feedback or make suggestions at&nbsp;
-        <ALink href='https://github.com/vikiboss/guitar-studio'>
+        <Anchor href='https://github.com/vikiboss/guitar-studio'>
           <Github size={14} className='mr-1' />
           GitHub
-        </ALink>
+        </Anchor>
         .
       </p>
 
@@ -29,45 +29,45 @@ export function Home() {
       <h3>Tech Stacks</h3>
       <ul>
         <li>
-          <ALink href='https://reactjs.org/'>React</ALink>
+          <Anchor href='https://reactjs.org/'>React</Anchor>
         </li>
         <li>
-          <ALink href='https://www.typescriptlang.org/'>TypeScript</ALink>
+          <Anchor href='https://www.typescriptlang.org/'>TypeScript</Anchor>
         </li>
         <li>
-          <ALink href='https://unocss.dev/'>UnoCSS</ALink>
+          <Anchor href='https://unocss.dev/'>UnoCSS</Anchor>
         </li>
         <li>
-          <ALink href='https://vitejs.dev/'>Vite</ALink>
+          <Anchor href='https://vitejs.dev/'>Vite</Anchor>
         </li>
       </ul>
       <h3>Credits</h3>
       <p>Thanks to the following awesome projects / npm packages:</p>
       <ul>
         <li>
-          <ALink href='https://github.com/ianprime0509/pitchy'>pitchy</ALink>
+          <Anchor href='https://github.com/ianprime0509/pitchy'>pitchy</Anchor>
         </li>
         <li>
-          <ALink href='https://github.com/tombatossals/chords-db'>chords-db</ALink> (
-          <ALink href='https://github.com/tombatossals/chords-db/blob/master/lib/guitar.json'>
+          <Anchor href='https://github.com/tombatossals/chords-db'>chords-db</Anchor> (
+          <Anchor href='https://github.com/tombatossals/chords-db/blob/master/lib/guitar.json'>
             lib/guitar.json
-          </ALink>
+          </Anchor>
           )
         </li>
         <li>
-          <ALink href='https://github.com/0xfe/vexchords'>vexchords</ALink>
+          <Anchor href='https://github.com/0xfe/vexchords'>vexchords</Anchor>
         </li>
         <li>
-          <ALink href='https://github.com/Tonejs/Tone.js'>Tone.js</ALink>
+          <Anchor href='https://github.com/Tonejs/Tone.js'>Tone.js</Anchor>
         </li>
         <li>
-          <ALink href='https://github.com/saebekassebil/teoria'>teoria</ALink>
+          <Anchor href='https://github.com/saebekassebil/teoria'>teoria</Anchor>
         </li>
       </ul>
 
       <h3>License</h3>
       <p>
-        <ALink href='https://github.com/vikiboss/guitar-studio/blob/main/LICENSE'>MIT</ALink>
+        <Anchor href='https://github.com/vikiboss/guitar-studio/blob/main/LICENSE'>MIT</Anchor>
       </p>
     </div>
   )

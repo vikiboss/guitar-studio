@@ -6,9 +6,9 @@ import '@unocss/reset/normalize.css'
 import 'virtual:uno.css'
 
 import './index.css'
-import './i18n.ts'
+import './i18n/index.ts'
 
-import { router } from './router'
+import { router } from './router/index.tsx'
 
 const mainDiv = document.getElementById('main')
 

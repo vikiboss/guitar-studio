@@ -1,4 +1,4 @@
-import cn from 'classnames'
+import { cn } from '@/utils/class-name'
 import { Button } from '@geist-ui/core'
 import { PitchDetector } from 'pitchy'
 import { useTranslation } from 'react-i18next'

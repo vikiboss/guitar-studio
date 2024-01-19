@@ -1,16 +1,15 @@
-import cn from 'classnames'
 import { draw } from 'vexchords'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useMediaQuery, Checkbox, Tabs } from '@geist-ui/core'
 
+import { cn } from '@/utils/class-name'
 import { store } from './store'
-import { ALink } from '@/components/a-link'
-import { useTheme } from '@/hooks/use-theme'
+import { Anchor } from '@/components/anchor'
+import { useTheme, useMount } from '@/hooks'
 import { CommonSuffixes, OrderedKeyList, chordsDb, getChordName } from '@/utils/chords'
 
 import type { Chord, ChordKey } from '@/utils/chords'
-import { useMount } from '@/hooks/use-mount'
 
 const getStyle = (isLg: boolean, isDark: boolean) => ({
   width: isLg ? 160 : 160,
@@ -120,7 +119,7 @@ export function Chords() {
 
       <div className='flex-center text-slate/80 my-8'>
         Chords data are from&nbsp;
-        <ALink href='https://github.com/tombatossals/chords-db'>`chords-db`</ALink>
+        <Anchor href='https://github.com/tombatossals/chords-db'>`chords-db`</Anchor>
         <span>.</span>
       </div>
     </div>

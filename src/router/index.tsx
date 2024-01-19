@@ -1,12 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import { App } from './app'
-import { Home } from './pages/home'
-import { Tuner } from './pages/tuner'
-import { Chords } from './pages/chords'
-import { Tablature } from './pages/tablature'
-import { Metronome } from './pages/metronome'
-import { EarTraining } from './pages/ear-training'
+import { App } from '../app'
+import { Home } from '../pages/home'
+import { Tuner } from '../pages/tuner'
+import { Chords } from '../pages/chords'
+import { Tablature } from '../pages/tablature'
+import { Metronome } from '../pages/metronome'
+import { EarTraining } from '../pages/ear-training'
 
 export const router = createBrowserRouter([
   {

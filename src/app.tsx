@@ -1,4 +1,4 @@
-import cn from 'classnames'
+import { cn } from '@/utils/class-name'
 import { Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { GeistProvider, CssBaseline, useMediaQuery } from '@geist-ui/core'

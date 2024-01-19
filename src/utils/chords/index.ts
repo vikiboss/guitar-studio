@@ -1,4 +1,4 @@
-import data from '@/utils/chords.json'
+import data from '@/utils/chords/chords.json'
 
 export const chordsDb = {
   main: data.main as Main,
