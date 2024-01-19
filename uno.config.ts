@@ -1,9 +1,6 @@
 import { defineConfig, presetUno, presetIcons, presetAttributify } from 'unocss'
 
 export default defineConfig({
-  content: {
-    filesystem: ['**/*.{html,js,ts,jsx,tsx}'],
-  },
   presets: [
     presetUno(),
     presetAttributify(),
@@ -13,5 +10,5 @@ export default defineConfig({
     }),
   ],
   rules: [],
-  shortcuts: []
+  shortcuts: [],
 })
