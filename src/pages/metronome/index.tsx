@@ -16,13 +16,13 @@ export function Metronome() {
   return (
     <div>
       <div className={classNames('flex flex-col gap-12 items-center', isLg ? 'w-880px' : 'w-92vw')}>
-        <div className='bg-slate-2/80 dark:bg-slate-8/80 shadow px-3 py-1 rounded'>
-          <span className='border-0 border-r border-solid border-slate/60 mr-2 pr-2'>🏗</span>It's now under development
+        <div className='bg-zinc-2/80 dark:bg-zinc-8/80 shadow px-3 py-1 rounded'>
+          <span className='border-0 border-r border-solid border-slate/40 mr-2 pr-2'>🏗</span>It's now under development
         </div>
 
         <div className='flex items-center flex-col'>
           <CountUp className='text-24' start={preValue} end={state.bmp} duration={0.1} />
-          <span className='tracking-wide bg-slate-2 dark:bg-slate-6 px-3 py-1 rounded text-center'>
+          <span className='tracking-wide bg-zinc-2 dark:bg-zinc-6 px-3 py-1 rounded text-center'>
             BMP
           </span>
         </div>
