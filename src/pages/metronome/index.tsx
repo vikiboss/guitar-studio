@@ -1,11 +1,11 @@
-import RangeSlider from '@/components/range-slider'
 import CountUp from 'react-countup'
+import { useMediaQuery } from '@geist-ui/core'
 import { useTranslation } from 'react-i18next'
 
+import { cn } from '@/utils'
 import { store } from './store'
-import { usePrevious } from '@/hooks/use-previous'
-import { useMediaQuery } from '@geist-ui/core'
-import classNames from 'classnames'
+import RangeSlider from '@/components/range-slider'
+import { usePrevious } from '@/hooks'
 
 export function Metronome() {
   const state = store.useState()
@@ -15,9 +15,10 @@ export function Metronome() {
 
   return (
     <div>
-      <div className={classNames('flex-col-center gap-12', isLg ? 'w-880px' : 'w-92vw')}>
+      <div className={cn('flex-col-center gap-12', isLg ? 'w-880px' : 'w-92vw')}>
         <div className='bg-zinc-2/80 dark:bg-zinc-8/80 shadow px-3 py-1 rounded'>
-          <span className='border-0 border-r border-solid border-slate/40 mr-2 pr-2'>🏗</span>It's now under development
+          <span className='border-0 border-r border-solid border-slate/40 mr-2 pr-2'>🏗</span>It's
+          now under development
         </div>
 
         <div className='flex-col-center'>

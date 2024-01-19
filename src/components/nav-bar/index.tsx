@@ -1,13 +1,12 @@
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Tabs, Button } from '@geist-ui/core'
+import { useTranslation } from 'react-i18next'
 import { Sun, Github, Monitor, Moon } from '@geist-ui/icons'
 
-import { useTheme } from '@/hooks/use-theme'
-import { useNavigate } from 'react-router-dom'
-import { useRouterLink } from '@/hooks/use-router-link'
-import { useTranslation } from 'react-i18next'
-import { useEffect } from 'react'
+import { useTheme, useRouterLink } from '@/hooks'
 
-const langMap: Record<string, string> = {
+const LangMap: Record<string, string> = {
   en: 'Ａ',
   ja: 'あ',
   'zh-CN': '汉',
@@ -69,7 +68,7 @@ export function NavBar() {
             className='font-mono tracking-widest'
             placeholder='switch theme'
           >
-            {langMap[i18n.language]}
+            {LangMap[i18n.language]}
           </Button>
         </div>
       </div>

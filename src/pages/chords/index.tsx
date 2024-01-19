@@ -3,13 +3,12 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useMediaQuery, Checkbox, Tabs } from '@geist-ui/core'
 
-import { cn } from '@/utils/class-name'
 import { store } from './store'
 import { Anchor } from '@/components/anchor'
 import { useTheme, useMount } from '@/hooks'
-import { CommonSuffixes, OrderedKeyList, chordsDb, getChordName } from '@/utils/chords'
+import { cn, CommonSuffixes, OrderedKeyList, chordsDb, getChordName } from '@/utils'
 
-import type { Chord, ChordKey } from '@/utils/chords'
+import type { Chord, ChordKey } from '@/utils'
 
 const getStyle = (isLg: boolean, isDark: boolean) => ({
   width: isLg ? 160 : 160,

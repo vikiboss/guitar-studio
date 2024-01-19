@@ -1,4 +1,4 @@
-import { AnyFunc } from '@/utils/types'
+import type { AnyFunc } from '@/utils'
 
 // polyfill for startViewTransition
 document.startViewTransition = document.startViewTransition

@@ -1,6 +1,7 @@
-import { cn } from '@/utils/class-name'
 import { pathToRegexp } from 'path-to-regexp'
 import { Link, useLocation } from 'react-router-dom'
+
+import { cn } from '@/utils'
 
 import type { LinkProps } from 'react-router-dom'
 

@@ -1,14 +1,11 @@
-import { cn } from '@/utils/class-name'
 import { Button } from '@geist-ui/core'
 import { PitchDetector } from 'pitchy'
 import { useTranslation } from 'react-i18next'
 
 import { store } from './store'
-import { chordsDb } from '@/utils/chords'
-import { useRender } from '@/hooks/use-render'
-import { useUnmount } from '@/hooks/use-unmount'
+import { cn, chordsDb } from '@/utils'
+import { useRender, useUnmount, useViewTransition } from '@/hooks'
 import { findClosestPitch } from './pitch'
-import { useViewTransition } from '@/hooks/use-view-transition'
 
 // global timer to fix the bug of setInterval when switching pages
 let timer: number = 0
