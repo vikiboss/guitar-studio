@@ -8,10 +8,10 @@ import { useTranslation } from 'react-i18next'
 import { useEffect } from 'react'
 
 const langMap: Record<string, string> = {
-  en: 'EN',
-  ja: 'JA',
-  'zh-CN': 'ZH',
-  'zh-TW': 'TW',
+  en: 'Ａ',
+  ja: 'あ',
+  'zh-CN': '汉',
+  'zh-TW': '漢',
 }
 
 export function NavBar() {
