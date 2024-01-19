@@ -16,7 +16,9 @@ export function Metronome() {
   return (
     <div>
       <div className={classNames('flex flex-col gap-12 items-center', isLg ? 'w-880px' : 'w-92vw')}>
-        <div className='bg-lime-3/80 dark:bg-lime-7/80 px-3 py-1 rounded'>🏗 under development</div>
+        <div className='bg-slate-2/80 dark:bg-slate-8/80 shadow px-3 py-1 rounded'>
+          <span className='border-0 border-r border-solid border-slate/60 mr-2 pr-2'>🏗</span>It's now under development
+        </div>
 
         <div className='flex items-center flex-col'>
           <CountUp className='text-24' start={preValue} end={state.bmp} duration={0.1} />
