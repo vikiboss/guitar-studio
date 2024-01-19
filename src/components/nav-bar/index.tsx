@@ -28,9 +28,9 @@ export function NavBar() {
   useEffect(() => void (!i18n.language && i18n.changeLanguage('en')), [i18n.language])
 
   return (
-    <div id='nav' className='w-full flex items-center justify-center relative'>
-      <div className='h-12 top-2 lg:top-4 px-2 fixed flex items-center justify-between rounded-2 w-[calc(100vw-2rem)] mx-4 lg:w-[880px] bg-zinc-1 dark:bg-dark'>
-        <div className='flex items-center gap-2'>
+    <div id='nav' className='w-full flex-center relative'>
+      <div className='h-12 top-2 lg:top-4 mx-4 px-2 fixed flex-between rounded-2 w-[calc(100vw-2rem)] lg:w-[880px] bg-zinc-1 dark:bg-dark'>
+        <div className='flex-center gap-2'>
           <Tabs
             className='max-w-[60vw] lg:max-w-[880px]'
             hideDivider
@@ -43,7 +43,7 @@ export function NavBar() {
             ))}
           </Tabs>
         </div>
-        <div className='flex items-center gap-1 lg:gap-2'>
+        <div className='flex-center gap-1 lg:gap-2'>
           <Button
             onClick={() => window.open('https://github.com/vikiboss/guitar-studio', '_blank')}
             iconRight={<Github />}

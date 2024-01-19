@@ -63,7 +63,7 @@ export function Tuner() {
 
   return (
     <div>
-      <div className='flex flex-col items-center gap-2'>
+      <div className='flex-col-center gap-2'>
         {timer ? (
           <>
             <span className='text-24 lg:text-28'>{timer ? closest.note : '-'}</span>
@@ -74,7 +74,7 @@ export function Tuner() {
             <span className={cn('text-10 lg:text-12', adviceColor)}>{t(`tuner:${advice}`)}</span>
             <div className='text-center mb-8'>
               <span className={cn('opacity-50')}>{t('tuner:standard-tuning')}</span>
-              <div className='flex items-center gap-4 relative'>
+              <div className='flex-center gap-4 relative'>
                 {chordsDb.tunings.standard.map(tuning => {
                   const color =
                     tuning === closest.note ? `opacity-100 ${adviceColor}` : 'opacity-50'

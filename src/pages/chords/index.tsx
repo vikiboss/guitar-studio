@@ -69,7 +69,7 @@ export function Chords() {
 
   return (
     <div className={cn('transition-all')}>
-      <div className={cn('flex gap-4 mt-4 flex-wrap', isLg ? '' : 'justify-center')}>
+      <div className={cn('mt-4 flex flex-wrap gap-4', isLg ? '' : 'justify-center')}>
         <Tabs
           value={key}
           className='max-w-[92vw] lg:w-[880px]!'
@@ -78,7 +78,7 @@ export function Chords() {
           {OrderedKeyList.map(orderedKey => (
             <Tabs.Item key={orderedKey} label={orderedKey} value={orderedKey}>
               <div className='flex flex-col'>
-                <div className='flex items-center justify-between px-2'>
+                <div className='flex-between px-2'>
                   <div>{t('chords:show-chords-total', { key, total: renderChords.length })}</div>
                   <Checkbox
                     initialChecked={showAllSuffixes}
@@ -97,15 +97,14 @@ export function Chords() {
                         <div
                           key={chord.key + chord.suffix}
                           className={cn(
-                            'flex-col gap-2 items-center',
                             isLg ? 'col-span-1' : 'col-span-2',
-                            isShow ? 'flex' : 'hidden',
+                            isShow ? 'flex-col-center gap-2' : 'hidden',
                           )}
                         >
                           <div
                             id={getDomId(chord)}
                             key={chord.positions[0].fingers.join('_')}
-                            className={cn('flex items-center justify-center')}
+                            className={cn('flex-center')}
                           />
                           <span>{getChordName(chord)}</span>
                         </div>
@@ -119,7 +118,7 @@ export function Chords() {
         </Tabs>
       </div>
 
-      <div className='flex text-slate/80 justify-center my-8'>
+      <div className='flex-center text-slate/80 my-8'>
         Chords data are from&nbsp;
         <ALink href='https://github.com/tombatossals/chords-db'>`chords-db`</ALink>
         <span>.</span>
