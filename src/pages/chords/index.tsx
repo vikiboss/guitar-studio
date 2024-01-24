@@ -6,7 +6,7 @@ import { useMediaQuery, Checkbox, Tabs } from '@geist-ui/core'
 import { store } from './store'
 import { Anchor } from '@/components/anchor'
 import { useTheme, useMount } from '@/hooks'
-import { cn, CommonSuffixes, OrderedKeyList, chordsDb, getChordName } from '@/utils'
+import { cn, CommonSuffixes, OrderedKeyList, chordsDb, getChordName, getKeyName } from '@/utils'
 
 import type { Chord, ChordKey } from '@/utils'
 
@@ -74,7 +74,7 @@ export function Chords() {
           onChange={e => (store.mutate.key = e as ChordKey)}
         >
           {OrderedKeyList.map(orderedKey => (
-            <Tabs.Item key={orderedKey} label={orderedKey} value={orderedKey}>
+            <Tabs.Item key={orderedKey} label={getKeyName(orderedKey)} value={orderedKey}>
               <div className='flex flex-col'>
                 <div className='flex-between px-2'>
                   <div>{t('chords:show-chords-total', { key, total: renderChords.length })}</div>

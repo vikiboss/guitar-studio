@@ -8,7 +8,7 @@ export const chordsDb = {
   tunings: data.tunings as Tunings,
 }
 
-export const OrderedKeyList = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C#', 'Eb', 'F#', 'Ab', 'Bb']
+export const OrderedKeyList = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
 export const CommonSuffixes = ['major', 'minor', '7', 'maj7', 'm7', 'sus4'] as ChordSuffix[]
 
 export type Chord = {
@@ -102,8 +102,8 @@ export type ChordSuffix =
   | '/G'
 
 export const getChordName = (chord: Chord) => {
-  const keyName = chord.key.replace('#', '♯').replace('b', '♭')
-  const suffixName = chord.suffix.replace('#', '♯').replace('b', '♭')
+  const keyName = getKeyName(chord.key)
+  const suffixName = getKeyName(chord.suffix)
 
   if (suffixName === 'major') return keyName
   if (suffixName === 'minor') return `${keyName}m`
@@ -113,4 +113,8 @@ export const getChordName = (chord: Chord) => {
   if (suffixName === 'aug7') return `${keyName}+7`
 
   return `${keyName}${suffixName}`
+}
+
+export const getKeyName = (key: string) => {
+  return key.replace('#', '♯').replace('b', '♭')
 }
