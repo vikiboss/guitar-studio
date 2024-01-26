@@ -1,6 +1,7 @@
 import { draw } from 'vexchords'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { useMediaQuery, Checkbox, Tabs } from '@geist-ui/core'
 
 import { store } from './store'
@@ -21,6 +22,7 @@ const getStyle = (isLg: boolean, isDark: boolean) => ({
 })
 
 export function Chords() {
+  const [ref] = useAutoAnimate()
   const isLg = useMediaQuery('lg')
   const { t } = useTranslation(['nav', 'chords'])
   const { isDark } = useTheme()
@@ -87,7 +89,7 @@ export function Chords() {
                   </Checkbox>
                 </div>
                 <div>
-                  <div className='grid grid-cols-4 mt-4'>
+                  <div className='grid grid-cols-4 mt-4' ref={ref}>
                     {chords.map(chord => {
                       const isShow = showAllSuffixes || CommonSuffixes.includes(chord.suffix)
 
