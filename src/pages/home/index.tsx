@@ -16,7 +16,7 @@ export function Home() {
       <p>
         This project is&nbsp;
         <Anchor href='https://github.com/vikiboss/guitar-studio'>Open Source</Anchor> and&nbsp;
-        <b>under developing</b>, feel free to feedback or make suggestions at&nbsp;
+        <b>under development</b>, feel free to feedback or make suggestions at&nbsp;
         <Anchor href='https://github.com/vikiboss/guitar-studio'>
           <Github size={14} className='mr-1' />
           GitHub

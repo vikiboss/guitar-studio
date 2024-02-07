@@ -17,8 +17,8 @@ export function Metronome() {
     <div>
       <div className={cn('flex-col-center gap-12', isLg ? 'w-880px' : 'w-92vw')}>
         <div className='bg-zinc-2/80 dark:bg-zinc-8/80 shadow px-3 py-1 rounded'>
-          <span className='border-0 border-r border-solid border-zinc/40 mr-2 pr-2'>🏗</span>It's now
-          under development
+          <span className='border-0 border-r border-solid border-zinc/40 mr-2 pr-2'>🏗</span>It's
+          still under development
         </div>
 
         <div className='flex-col-center'>

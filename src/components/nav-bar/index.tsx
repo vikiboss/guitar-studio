@@ -27,7 +27,7 @@ export function NavBar() {
   useEffect(() => void (!i18n.language && i18n.changeLanguage('en')), [i18n.language])
 
   return (
-    <div id='nav' className='w-full flex-center relative'>
+    <div id='nav' className='z-10 w-full flex-center relative'>
       <div className='h-12 top-2 lg:top-4 mx-4 px-2 fixed flex-between rounded-2 w-[calc(100vw-2rem)] lg:w-[880px] bg-zinc-1 dark:bg-dark'>
         <div className='flex-center gap-2'>
           <Tabs
