@@ -50,15 +50,15 @@ dependencies:
   react-router-dom:
     specifier: ^6.21.1
     version: 6.21.1(react-dom@18.2.0)(react@18.2.0)
+  sonner:
+    specifier: ^1.4.0
+    version: 1.4.0(react-dom@18.2.0)(react@18.2.0)
   teoria:
     specifier: ^2.5.0
     version: 2.5.0
   tone:
     specifier: ^14.7.77
     version: 14.7.77
-  toolcool-range-slider:
-    specifier: ^4.0.28
-    version: 4.0.28
   valtio:
     specifier: ^1.13.0
     version: 1.13.0(@types/react@18.2.47)(react@18.2.0)
@@ -2024,6 +2024,16 @@ packages:
       totalist: 3.0.1
     dev: true
 
+  /sonner@1.4.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-nvkTsIuOmi9e5Wz5If8ldasJjZNVfwiXYijBi2dbijvTQnQppvMcXTFNxL/NUFWlI2yJ1JX7TREDsg+gYm9WyA==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
@@ -2076,10 +2086,6 @@ packages:
     dependencies:
       standardized-audio-context: 25.3.61
       tslib: 2.6.2
-    dev: false
-
-  /toolcool-range-slider@4.0.28:
-    resolution: {integrity: sha512-DDZAEJ9hItgSbGWY6DkjvMoUBLZG9J3X6qvBzAruvGzcPwrZKRt3EB2ixPqFmrpEy98SyyM+WZbKL0+TR4fOkg==}
     dev: false
 
   /totalist@3.0.1:

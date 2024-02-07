@@ -1,4 +1,5 @@
 import React from 'react'
+import { Toaster } from 'sonner'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 
@@ -17,6 +18,7 @@ if (mainDiv) {
 
   root.render(
     <React.StrictMode>
+      <Toaster position='bottom-center' />
       <RouterProvider router={router} />
     </React.StrictMode>,
   )
