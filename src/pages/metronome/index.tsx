@@ -74,14 +74,14 @@ export function Metronome() {
         <div className='flex gap-2 items-center'>
           <div
             onClick={() => toast('work in progress')}
-            className='flex gap-1 items-center py-2 px-4 rounded-2 bg-zinc-1 hover:bg-zinc-2 hover:cursor-pointer hover:bg-zinc-2 dark:bg-zinc-6 bg-zinc-1 dark:hover:bg-zinc-5 hover:bg-zinc-1'
+            className='select-none flex gap-1 items-center py-2 px-4 rounded-2 bg-zinc-1 hover:bg-zinc-2 hover:cursor-pointer hover:bg-zinc-2 dark:bg-zinc-6 bg-zinc-1 dark:hover:bg-zinc-5 hover:bg-zinc-1'
           >
             <div className='i-mdi-play' />
             Start
           </div>
           <div
             onClick={() => toast('work in progress')}
-            className='flex gap-1 items-center  py-2 px-4 rounded-2 bg-zinc-1 hover:bg-zinc-2 hover:cursor-pointer hover:bg-zinc-2 dark:bg-zinc-6 bg-zinc-1 dark:hover:bg-zinc-5 hover:bg-zinc-1'
+            className='select-none flex gap-1 items-center  py-2 px-4 rounded-2 bg-zinc-1 hover:bg-zinc-2 hover:cursor-pointer hover:bg-zinc-2 dark:bg-zinc-6 bg-zinc-1 dark:hover:bg-zinc-5 hover:bg-zinc-1'
           >
             <div className='i-mdi-gesture-tap-hold' />
             Tap BPM
