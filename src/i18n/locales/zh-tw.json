@@ -21,5 +21,33 @@
   "chords": {
     "show-all-chords": "顯示所有和弦",
     "show-chords-total": "{{key}} - 總共顯示了 {{total}} 個和弦"
+  },
+  "ear-training": {
+    "play-interval": "播放音程",
+    "play-again": "再次播放",
+    "next": "下一題",
+    "correct-label": "正確",
+    "total-label": "總計",
+    "correct-feedback": "正確！",
+    "wrong-feedback": "正確答案是 {{name}}",
+    "intervals": {
+      "Major 2nd": "大二度",
+      "Minor 3rd": "小三度",
+      "Major 3rd": "大三度",
+      "Perfect 4th": "純四度",
+      "Tritone": "三全音",
+      "Perfect 5th": "純五度",
+      "Major 6th": "大六度",
+      "Minor 7th": "小七度",
+      "Octave": "純八度"
+    }
+  },
+  "tablature": {
+    "examples": "範例",
+    "input": "輸入",
+    "preview": "預覽",
+    "nothing-to-preview": "暫無內容",
+    "string-high-e": "e（高音）",
+    "string-low-e": "E（低音）"
   }
 }

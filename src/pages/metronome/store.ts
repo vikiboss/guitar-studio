@@ -1,5 +1,8 @@
 import { create } from '@/utils'
 
 export const store = create({
-  bmp: 120,
+  bpm: 120,
+  isPlaying: false,
+  currentBeat: -1,
+  beatsPerMeasure: 4,
 })

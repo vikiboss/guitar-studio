@@ -21,5 +21,33 @@
   "chords": {
     "show-all-chords": "すべてのコードを表示",
     "show-chords-total": "{{key}} - 合計 {{total}} コードが表示されました"
+  },
+  "ear-training": {
+    "play-interval": "音程を再生",
+    "play-again": "もう一度再生",
+    "next": "次へ",
+    "correct-label": "正解",
+    "total-label": "合計",
+    "correct-feedback": "正解！",
+    "wrong-feedback": "正解は {{name}} でした",
+    "intervals": {
+      "Major 2nd": "長2度",
+      "Minor 3rd": "短3度",
+      "Major 3rd": "長3度",
+      "Perfect 4th": "完全4度",
+      "Tritone": "増4度",
+      "Perfect 5th": "完全5度",
+      "Major 6th": "長6度",
+      "Minor 7th": "短7度",
+      "Octave": "オクターブ"
+    }
+  },
+  "tablature": {
+    "examples": "サンプル",
+    "input": "入力",
+    "preview": "プレビュー",
+    "nothing-to-preview": "コンテンツなし",
+    "string-high-e": "e（高音）",
+    "string-low-e": "E（低音）"
   }
 }

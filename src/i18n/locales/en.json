@@ -21,5 +21,33 @@
   "chords": {
     "show-all-chords": "Show all chords",
     "show-chords-total": "{{key}} - {{total}} chords showed in total"
+  },
+  "ear-training": {
+    "play-interval": "Play Interval",
+    "play-again": "play again",
+    "next": "Next",
+    "correct-label": "Correct",
+    "total-label": "Total",
+    "correct-feedback": "Correct!",
+    "wrong-feedback": "It was {{name}}",
+    "intervals": {
+      "Major 2nd": "Major 2nd",
+      "Minor 3rd": "Minor 3rd",
+      "Major 3rd": "Major 3rd",
+      "Perfect 4th": "Perfect 4th",
+      "Tritone": "Tritone",
+      "Perfect 5th": "Perfect 5th",
+      "Major 6th": "Major 6th",
+      "Minor 7th": "Minor 7th",
+      "Octave": "Octave"
+    }
+  },
+  "tablature": {
+    "examples": "Examples",
+    "input": "Input",
+    "preview": "Preview",
+    "nothing-to-preview": "Nothing to preview",
+    "string-high-e": "e (high)",
+    "string-low-e": "E (low)"
   }
 }
