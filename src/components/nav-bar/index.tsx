@@ -1,6 +1,10 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Tabs, Button } from '@geist-ui/core'
+import { Tabs, Button as _Button } from '@geist-ui/core'
+
+// @geist-ui/core type is incompatible with @types/react ≥ 18.3 pointer capture events
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Button = _Button as React.ComponentType<any>
 import { useTranslation } from 'react-i18next'
 import { Sun, Github, Monitor, Moon } from '@geist-ui/icons'
 

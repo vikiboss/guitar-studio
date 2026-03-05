@@ -1,4 +1,9 @@
-import { Button } from '@geist-ui/core'
+import React from 'react'
+import { Button as _Button } from '@geist-ui/core'
+
+// @geist-ui/core type is incompatible with @types/react ≥ 18.3 pointer capture events
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Button = _Button as React.ComponentType<any>
 import { PitchDetector } from 'pitchy'
 import { useTranslation } from 'react-i18next'
 
